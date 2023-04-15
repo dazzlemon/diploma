@@ -7,20 +7,15 @@ def parse_args() -> Mode:
     parser = argparse.ArgumentParser(description='UDC Classifier')
     parser.add_argument('model_filename', help='the name of the model file')
     parser.add_argument('text_filename', help='the name of the input text file')
-    parser.add_argument(
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument(
         '--training',
         dest='new_model_filename',
-        help=
-           'If this parameter is specified, the model will be trained.'
-           "--udc can't be used with this this parameter.",
-        required=False
+        help='If this parameter is specified, the model will be trained.',
     )
-    parser.add_argument(
+    group.add_argument(
         '--udc',
-        help=
-            'the input UDC code to compare against the predicted classes'
-            "--training can't be used with this this parameter.",
-        required=False
+        help='the input UDC code to compare against the predicted classes',
     )
     args = parser.parse_args()
 
