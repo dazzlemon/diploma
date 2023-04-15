@@ -19,9 +19,6 @@ def parse_args() -> Mode:
     )
     args = parser.parse_args()
 
-    if args.new_model_filename and args.udc:
-        raise ValueError("Cannot specify both --training and --udc options.")
-
     arguments = {
         "model_filename": args.model_filename,
         "text_filename": args.text_filename
