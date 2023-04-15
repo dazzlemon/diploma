@@ -1,7 +1,4 @@
-"""
-This module defines data classes for different modes of an app.
-The classes are used to store mode-specific information in a structured way.
-"""
+"""Data classes for app modes"""
 from abc import ABC
 from dataclasses import dataclass
 from typing import Optional, Final
@@ -18,16 +15,16 @@ class Mode(ABC):
 @dataclass
 class PredictionMode(Mode):
     """Prediction mode"""
-    mode_name: Final[str] = 'prediction'
+    mode_name: Final[str] = 'Prediction'
+
+@dataclass
+class UDCComparisonMode(Mode):
+    """Prediction and udc comparison mode"""
+    mode_name: Final[str] = 'Prediction and udc comparison'
+    udc: Optional[str] = None
 
 @dataclass
 class TrainingMode(Mode):
     """Training mode"""
-    mode_name: Final[str] = 'training'
+    mode_name: Final[str] = 'Training'
     new_model_filename: Optional[str] = None
-
-@dataclass
-class UDCComparisonMode(Mode):
-    """Training mode"""
-    mode_name: Final[str] = 'training'
-    udc: Optional[str] = None

@@ -1,7 +1,7 @@
 """
 UDC classes predictor for scientific works in english.
 """
-from udc_arg_parser import parse_args
+from parse_args import parse_args
 from mode import TrainingMode, UDCComparisonMode
 
 if __name__ == '__main__':
