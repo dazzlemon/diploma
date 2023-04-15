@@ -14,23 +14,30 @@ class UDCArgParser:
                                  help='the input UDC code to compare against the predicted classes')
         self.args = self.parser.parse_args()
 
-    def get_model_filename(self) -> str:
+    @property
+    def model_filename(self) -> str:
         return self.args.model_filename
 
-    def get_text_filename(self) -> str:
+    @property
+    def text_filename(self) -> str:
         return self.args.text_filename
 
-    def get_new_model_filename(self) -> Optional[str]:
+    @property
+    def new_model_filename(self) -> Optional[str]:
         return self.args.new_model_filename
 
-    def get_udc_code(self) -> Optional[str]:
+    @property
+    def udc_code(self) -> Optional[str]:
         return self.args.udc
 
+    @property
     def is_training_mode(self) -> bool:
         return self.args.new_model_filename is not None
 
+    @property
     def is_udc_comparison_mode(self) -> bool:
         return self.args.udc is not None
 
+    @property
     def is_prediction_mode(self) -> bool:
-        return not self.is_training_mode() and not self.is_udc_comparison_mode()
+        return not self.is_training_mode and not self.is_udc_comparison_mode
