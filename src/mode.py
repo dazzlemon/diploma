@@ -3,7 +3,7 @@ This module defines data classes for different modes of an app.
 The classes are used to store mode-specific information in a structured way.
 """
 from abc import ABC
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Optional, Final
 
 @dataclass
@@ -11,6 +11,8 @@ class Mode(ABC):
     """Base class for app modes"""
     model_filename: str
     text_filename: str
+		# idk what's the problem with this class
+    # pylint: disable=invalid-name
     mode_name: Final[str] = ''
 
 @dataclass
