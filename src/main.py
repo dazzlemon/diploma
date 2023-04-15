@@ -1,25 +1,25 @@
 """
 UDC classes predictor for scientific works in english.
 """
-from udc_arg_parser import UDCArgParser
+from udc_arg_parser import parse_args
 from mode import TrainingMode, UDCComparisonMode
 
 if __name__ == '__main__':
-    udc_parser = UDCArgParser()
+    mode = parse_args()
 
-    if udc_parser.mode is TrainingMode:
+    if isinstance(mode, TrainingMode):
         print('training')
-        print(f'\t{udc_parser.text_filename=}')
-        print(f'\t{udc_parser.model_filename=}')
-        print(f'\t{udc_parser.new_model_filename=}')
-    elif udc_parser.mode is UDCComparisonMode:
+        print(f'\t{mode.text_filename=}')
+        print(f'\t{mode.model_filename=}')
+        print(f'\t{mode.new_model_filename=}')
+    elif isinstance(mode, UDCComparisonMode):
         print('UDC comparison')
-        print(f'\t{udc_parser.text_filename=}')
-        print(f'\t{udc_parser.model_filename=}')
-        print(f'\t{udc_parser.udc_code=}')
+        print(f'\t{mode.text_filename=}')
+        print(f'\t{mode.model_filename=}')
+        print(f'\t{mode.udc_code=}')
     else:
         print('prediction')
-        print(f'\t{udc_parser.text_filename=}')
-        print(f'\t{udc_parser.model_filename=}')
-        print(f'\t{udc_parser.new_model_filename=}')
-        print(f'\t{udc_parser.udc_code=}')
+        print(f'\t{mode.text_filename=}')
+        print(f'\t{mode.model_filename=}')
+        print(f'\t{mode.new_model_filename=}')
+        print(f'\t{mode.udc_code=}')
