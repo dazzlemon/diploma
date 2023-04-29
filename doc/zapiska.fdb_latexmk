@@ -1,11 +1,11 @@
 # Fdb version 4
-["xdvipdfmx"] 1682797063 "zapiska.xdv" "zapiska.pdf" "zapiska" 1682797064 0
-  "zapiska.xdv" 1682797063 35464 37f36b5a5e7ebb094e60ff55274a505b "xelatex"
+["xdvipdfmx"] 1682797940 "zapiska.xdv" "zapiska.pdf" "zapiska" 1682797940 0
+  "zapiska.xdv" 1682797940 58712 f1843500b4c8aba16a5c0112025f4053 "xelatex"
   (generated)
   "zapiska.pdf"
   (rewritten before read)
-["xelatex"] 1682797063 "/home/dazzlemon/github/diplom/doc/zapiska.tex" "zapiska.xdv" "zapiska" 1682797064 0
-  "/home/dazzlemon/github/diplom/doc/zapiska.tex" 1682797063 1985 250d198707e7846f8dd9bf8cb83ccec0 ""
+["xelatex"] 1682797940 "/home/dazzlemon/github/diplom/doc/zapiska.tex" "zapiska.xdv" "zapiska" 1682797940 0
+  "/home/dazzlemon/github/diplom/doc/zapiska.tex" 1682797939 2113 b34e3621e9728c5c2e26dfaac0ce7f17 ""
   "/usr/share/texmf-dist/tex/generic/babel-ukrainian/ukraineb.ldf" 1678900371 17162 a07fe8757c4d33e08ead21654224f206 ""
   "/usr/share/texmf-dist/tex/generic/babel/babel.sty" 1680514707 151363 1f5971af3ef874d432e8fb43e0edb71d ""
   "/usr/share/texmf-dist/tex/generic/babel/locale/uk/babel-uk.ini" 1680514707 5912 63b45215081b07b1e631fff153c4b079 ""
@@ -90,7 +90,10 @@
   "/usr/share/texmf-dist/tex/latex/graphics/trig.sty" 1680514707 4023 293ea1c16429fc0c4cf605f4da1791a9 ""
   "/usr/share/texmf-dist/tex/latex/l3backend/l3backend-xetex.def" 1680514707 32346 879686206fa618f4f5073ad4bd48feda ""
   "/usr/share/texmf-dist/tex/latex/l3kernel/expl3.sty" 1680514707 6107 5cfea8a675c58918b8c04be10261e48c ""
+  "/usr/share/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty" 1680514707 4674 257c150d9d5c2fbc229303c8beaf6228 ""
   "/usr/share/texmf-dist/tex/latex/l3packages/xparse/xparse.sty" 1680514707 6812 3c152a1c8d562d7b7291c4839b61a5c3 ""
+  "/usr/share/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex" 1678900920 95525 6fd0552101a6b1f9b7a84b402ec435ba ""
+  "/usr/share/texmf-dist/tex/latex/lipsum/lipsum.sty" 1678900920 14690 c2c754218a7108db7823a4839c1bc3cd ""
   "/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty" 1680514707 1090 bae35ef70b3168089ef166db3e66f5b2 ""
   "/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty" 1680514707 373 00b204b1d7d095b892ad31a7494b0373 ""
   "/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty" 1680514707 21013 f4ff83d25bb56552493b030f27c075ae ""
@@ -102,13 +105,14 @@
   "/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty" 1680514707 274 5ae372b7df79135d240456a1c6f2cf9a ""
   "/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty" 1680514707 325 f9f16d12354225b7dd52a3321f085955 ""
   "/usr/share/texmf-dist/tex/latex/tools/afterpage.sty" 1680514707 4085 743fa8077af1f99a47e9d0c97d070258 ""
+  "/usr/share/texmf-dist/tex/latex/tools/indentfirst.sty" 1680514707 1618 6f0598aa81f9ba5cf5d393b4abd3e091 ""
   "/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty" 1680514707 56148 51a9a8571c07b9921892ae11063ae853 ""
   "/usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty" 1680514707 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1680514707 39911 2da6c67557ec033436fe5418a70a8a61 ""
   "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1682785757 11046109 7989ca79e51bc9442100022b98bf4917 ""
-  "zapiska.aux" 1682797063 3076 4aaa670122773c3423a32acd9b960c95 "xelatex"
-  "zapiska.tex" 1682797063 1985 250d198707e7846f8dd9bf8cb83ccec0 ""
-  "zapiska.toc" 1682797063 1543 ce5c6c0e45ff562eb04e09615c2f2f75 "xelatex"
+  "zapiska.aux" 1682797940 3076 4aaa670122773c3423a32acd9b960c95 "xelatex"
+  "zapiska.tex" 1682797939 2113 b34e3621e9728c5c2e26dfaac0ce7f17 ""
+  "zapiska.toc" 1682797940 1543 ce5c6c0e45ff562eb04e09615c2f2f75 "xelatex"
   (generated)
   "zapiska.aux"
   "zapiska.log"

@@ -2,9 +2,13 @@
 \usepackage{fontspec}
 \usepackage[ukrainian]{babel}
 \usepackage[contents=TODO, color=gray, pages=some]{background}
-\usepackage[a4paper]{geometry} % Set the page size to A4
+\usepackage[a4paper, left=20mm, top=20mm, right=10mm, bottom=20mm]{geometry}
+\usepackage{lipsum}
+\usepackage{indentfirst}
 
 \setmainfont{Times New Roman}
+\linespread{1.5}
+\setlength{\parindent}{16mm}
 
 % all sections will start at new page
 \let\oldsection\section
@@ -35,7 +39,8 @@
 
 % ommited because it's only used for groupping
 % основну частину:
-  \unnumberedSection{вступ}
+  \unnumberedSection{вступ}  
+  \lipsum[1-3]
   \BgThispage
 
   % ommited because it's only used for groupping
