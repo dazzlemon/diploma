@@ -1,16 +1,18 @@
 # Fdb version 4
-["xdvipdfmx"] 1682796694 "zapiska.xdv" "zapiska.pdf" "zapiska" 1682796695 0
-  "zapiska.xdv" 1682796694 33656 95d4a5454221db08e9592968fa1e0c3d "xelatex"
+["xdvipdfmx"] 1682797063 "zapiska.xdv" "zapiska.pdf" "zapiska" 1682797064 0
+  "zapiska.xdv" 1682797063 35464 37f36b5a5e7ebb094e60ff55274a505b "xelatex"
   (generated)
   "zapiska.pdf"
   (rewritten before read)
-["xelatex"] 1682796694 "/home/dazzlemon/github/diplom/doc/zapiska.tex" "zapiska.xdv" "zapiska" 1682796695 0
-  "/home/dazzlemon/github/diplom/doc/zapiska.tex" 1682796693 1928 a209080b0259bc52ae072d8e86f021a3 ""
+["xelatex"] 1682797063 "/home/dazzlemon/github/diplom/doc/zapiska.tex" "zapiska.xdv" "zapiska" 1682797064 0
+  "/home/dazzlemon/github/diplom/doc/zapiska.tex" 1682797063 1985 250d198707e7846f8dd9bf8cb83ccec0 ""
   "/usr/share/texmf-dist/tex/generic/babel-ukrainian/ukraineb.ldf" 1678900371 17162 a07fe8757c4d33e08ead21654224f206 ""
   "/usr/share/texmf-dist/tex/generic/babel/babel.sty" 1680514707 151363 1f5971af3ef874d432e8fb43e0edb71d ""
   "/usr/share/texmf-dist/tex/generic/babel/locale/uk/babel-uk.ini" 1680514707 5912 63b45215081b07b1e631fff153c4b079 ""
   "/usr/share/texmf-dist/tex/generic/babel/locale/uk/babel-ukrainian.tex" 1680514707 336 38d7913ba5e1b185ca4261c8dd7f09fd ""
   "/usr/share/texmf-dist/tex/generic/babel/xebabel.def" 1680514707 15021 cabe907ba6c6ed992c28d4aa9ddba361 ""
+  "/usr/share/texmf-dist/tex/generic/iftex/iftex.sty" 1680514707 7237 bdd120a32c8fdb4b433cf9ca2e7cd98a ""
+  "/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty" 1680514707 1057 525c2192b5febbd8c1f662c9468335bb ""
   "/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex" 1680514707 1016 1c2b89187d12a2768764b83b4945667c ""
   "/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex" 1680514707 43820 1fef971b75380574ab35a0d37fd92608 ""
   "/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex" 1680514707 19324 f4e4c6403dd0f1605fd20ed22fa79dea ""
@@ -77,6 +79,7 @@
   "/usr/share/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty" 1680514707 162076 2f6d31c4632f2730c57b9c0fda038e15 ""
   "/usr/share/texmf-dist/tex/latex/fontspec/fontspec.cfg" 1680514707 549 c4adac819276241fea8eb79c5ab7b99e ""
   "/usr/share/texmf-dist/tex/latex/fontspec/fontspec.sty" 1680514707 1656 7e824878bad4df5a3e8bba4e463d9126 ""
+  "/usr/share/texmf-dist/tex/latex/geometry/geometry.sty" 1680514707 41601 9cf6c5257b1bc7af01a58859749dd37a ""
   "/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg" 1680514707 1213 620bba36b25224fa9b7e1ccb4ecb76fd ""
   "/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg" 1680514707 1224 978390e9c2234eab29404bc21b268d1e ""
   "/usr/share/texmf-dist/tex/latex/graphics-def/xetex.def" 1680514707 14788 1dde73f396dd97d88c838bee2a352abe ""
@@ -103,9 +106,9 @@
   "/usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty" 1680514707 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1680514707 39911 2da6c67557ec033436fe5418a70a8a61 ""
   "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1682785757 11046109 7989ca79e51bc9442100022b98bf4917 ""
-  "zapiska.aux" 1682796694 3076 8a719a4dd152fc75f71fdee7b76f8e81 "xelatex"
-  "zapiska.tex" 1682796693 1928 a209080b0259bc52ae072d8e86f021a3 ""
-  "zapiska.toc" 1682796694 1543 ce5c6c0e45ff562eb04e09615c2f2f75 "xelatex"
+  "zapiska.aux" 1682797063 3076 4aaa670122773c3423a32acd9b960c95 "xelatex"
+  "zapiska.tex" 1682797063 1985 250d198707e7846f8dd9bf8cb83ccec0 ""
+  "zapiska.toc" 1682797063 1543 ce5c6c0e45ff562eb04e09615c2f2f75 "xelatex"
   (generated)
   "zapiska.aux"
   "zapiska.log"
