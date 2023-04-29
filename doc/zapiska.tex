@@ -5,10 +5,22 @@
 \usepackage[a4paper, left=20mm, top=20mm, right=10mm, bottom=20mm]{geometry}
 \usepackage{lipsum}
 \usepackage{indentfirst}
+\usepackage{titlesec}
 
 \setmainfont{Times New Roman}
 \linespread{1.5}
 \setlength{\parindent}{16mm}
+
+\titleformat{\section}
+  { \filcenter % center
+    \fontsize{14pt}{14pt}
+    \bfseries % semi bold
+    \MakeUppercase
+  }
+  {\thesection~}
+  {0pt}
+  {}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
 
 % all sections will start at new page
 \let\oldsection\section
