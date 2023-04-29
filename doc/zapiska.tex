@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[14pt]{extarticle}
 \usepackage{fontspec}
 \usepackage[ukrainian]{babel}
 \usepackage[contents=TODO, color=gray, pages=some]{background}
@@ -6,6 +6,7 @@
 \usepackage{lipsum}
 \usepackage{indentfirst}
 \usepackage{titlesec}
+\usepackage{stringstrings}
 
 \setmainfont{Times New Roman}
 \linespread{1.5}
@@ -21,6 +22,15 @@
   {0pt}
   {}
 \titlespacing*{\section}{0pt}{12pt}{6pt}
+
+\titleformat{\subsection}
+  { \fontsize{14pt}{14pt}
+  }
+  % TODO: sentence case
+  {\thesubsection~}
+  {0pt}
+  {}
+\titlespacing*{\subsection}{0pt}{6pt}{0pt}
 
 % all sections will start at new page
 \let\oldsection\section
@@ -60,6 +70,7 @@
 
   \section{збір та аналіз вимог}
   \subsection{висновки}
+  \lipsum[1-3]
   \BgThispage
 
   \section{проєктування}
