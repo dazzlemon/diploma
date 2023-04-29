@@ -1,0 +1,20 @@
+\babel@toc {ukrainian}{}\relax 
+\contentsline {section}{перелік умовних познак, символів, скорочень і термінів}{4}{}%
+\contentsline {section}{вступ}{5}{}%
+\contentsline {section}{\numberline {1}збір та аналіз вимог}{6}{}%
+\contentsline {subsection}{\numberline {1.1}висновки}{6}{}%
+\contentsline {section}{\numberline {2}проєктування}{7}{}%
+\contentsline {subsection}{\numberline {2.1}висновки}{7}{}%
+\contentsline {section}{\numberline {3}зовнішнє проєктування}{8}{}%
+\contentsline {subsection}{\numberline {3.1}висновки}{8}{}%
+\contentsline {section}{\numberline {4}внутрішнє проєктування}{9}{}%
+\contentsline {subsection}{\numberline {4.1}висновки}{9}{}%
+\contentsline {section}{\numberline {5}проєктування архітектури системи}{10}{}%
+\contentsline {subsection}{\numberline {5.1}висновки}{10}{}%
+\contentsline {section}{\numberline {6}розробка програми}{11}{}%
+\contentsline {subsection}{\numberline {6.1}висновки}{11}{}%
+\contentsline {section}{\numberline {7}тестування та налагодження}{12}{}%
+\contentsline {subsection}{\numberline {7.1}висновки}{12}{}%
+\contentsline {section}{загальні висновки та рекомендації}{13}{}%
+\contentsline {section}{список використаної літератури}{14}{}%
+\contentsline {section}{додатки}{15}{}%

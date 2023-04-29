@@ -6,59 +6,58 @@
 
 \setmainfont{Times New Roman}
 
-\newenvironment{centerPage}[1]{
-	\pagebreak
-	\hspace{0pt}
-	\vfill
-	\begin{center}
-		\Large\textbf{#1}
-	\end{center}
-	\vfill
-	\hspace{0pt}
-	\pagebreak
+% all sections will start at new page
+\let\oldsection\section
+\renewcommand{\section}{\clearpage\oldsection}
+
+\newcommand{\unnumberedSection}[1]{%
+  \section*{#1}%
+  \addcontentsline{toc}{section}{#1}%
 }
-
-\newenvironment{wip}[1]{
-	\AddToShipoutPicture{
-		\begin{tikzpicture}[overlay]
-			\node[opacity=0.2, rotate=45, scale=15] at (current page.center) {WIP};
-		\end{tikzpicture}
-	}
-
-	#1
-
-	\ClearShipoutPicture
-}
-
-\newenvironment{wipPage}[1]{
-	\wip{
-		\centerPage{#1}
-	}
-}
-
 
 \begin{document}
 
-\wipPage{титульний аркуш}
-\wipPage{завдання}
-\wipPage{реферат}
-\wipPage{зміст}
-\wipPage{перелік умовних познак, символів, скорочень і термінів}
+титульний аркуш
+завдання
+\section*{реферат}
+
+% зміст
+\tableofcontents
+
+\unnumberedSection{перелік умовних познак, символів, скорочень і термінів}
+
 % ommited because it's only used for groupping
 % основну частину:
-  \wipPage{вступ}
-	% ommited because it's only used for groupping
+  \unnumberedSection{вступ}
+
+  % ommited because it's only used for groupping
   % основний текст кваліфікаційного проєкту (роботи):
-  \wipPage{збір та аналіз вимог}
-  \wipPage{проєктування}
-  \wipPage{зовнішнє проєктування}
-  \wipPage{внутрішнє проєктування}
-  \wipPage{проєктування архітектури системи}
-  \wipPage{розробка програми}
-  \wipPage{тестування та налагодження}
-  \wipPage{висновки (у кожному розділі)}
-  \wipPage{загальні висновки та рекомендації}
-  \wipPage{список використаної літератури}
-  \wipPage{додатки}
+
+  \section{збір та аналіз вимог}
+  \subsection{висновки}
+
+  \section{проєктування}
+  \subsection{висновки}
+
+  \section{зовнішнє проєктування}
+  \subsection{висновки}
+
+  \section{внутрішнє проєктування}
+  \subsection{висновки}
+
+  \section{проєктування архітектури системи}
+  \subsection{висновки}
+
+  \section{розробка програми}
+  \subsection{висновки}
+
+  \section{тестування та налагодження}
+  \subsection{висновки}
+
+  \unnumberedSection{загальні висновки та рекомендації}
+
+  \unnumberedSection{список використаної літератури}
+
+  \unnumberedSection{додатки}
 
 \end{document}

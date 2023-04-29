@@ -1,11 +1,11 @@
 # Fdb version 4
-["xdvipdfmx"] 1682791028 "zapiska.xdv" "zapiska.pdf" "zapiska" 1682791028 0
-  "zapiska.xdv" 1682791028 23224 9d9d0406daea20d97a59609e92dfdc55 "xelatex"
+["xdvipdfmx"] 1682795470 "zapiska.xdv" "zapiska.pdf" "zapiska" 1682795470 0
+  "zapiska.xdv" 1682795470 20696 99cab827c30809c4466b549d478cfb44 "xelatex"
   (generated)
   "zapiska.pdf"
   (rewritten before read)
-["xelatex"] 1682791028 "/home/dazzlemon/github/diplom/doc/zapiska.tex" "zapiska.xdv" "zapiska" 1682791028 0
-  "/home/dazzlemon/github/diplom/doc/zapiska.tex" 1682791027 1693 ebee2b64aa208b8a8e61ca391db362ad ""
+["xelatex"] 1682795470 "/home/dazzlemon/github/diplom/doc/zapiska.tex" "zapiska.xdv" "zapiska" 1682795470 0
+  "/home/dazzlemon/github/diplom/doc/zapiska.tex" 1682795469 1691 f33a26bb760c65bbef8de1e47214da36 ""
   "/usr/share/texmf-dist/tex/generic/babel-ukrainian/ukraineb.ldf" 1678900371 17162 a07fe8757c4d33e08ead21654224f206 ""
   "/usr/share/texmf-dist/tex/generic/babel/babel.sty" 1680514707 151363 1f5971af3ef874d432e8fb43e0edb71d ""
   "/usr/share/texmf-dist/tex/generic/babel/locale/uk/babel-uk.ini" 1680514707 5912 63b45215081b07b1e631fff153c4b079 ""
@@ -97,10 +97,12 @@
   "/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty" 1680514707 56148 51a9a8571c07b9921892ae11063ae853 ""
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1680514707 39911 2da6c67557ec033436fe5418a70a8a61 ""
   "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1682785757 11046109 7989ca79e51bc9442100022b98bf4917 ""
-  "zapiska.aux" 1682791028 135 1d39a9af67bf4c9696d8409e9df63be0 "xelatex"
-  "zapiska.tex" 1682791027 1693 ebee2b64aa208b8a8e61ca391db362ad ""
+  "zapiska.aux" 1682795470 2423 fc005985456417f8e85a7d7d792ed384 "xelatex"
+  "zapiska.tex" 1682795469 1691 f33a26bb760c65bbef8de1e47214da36 ""
+  "zapiska.toc" 1682795470 1541 c8b82076f22048402026ab32989bcce3 "xelatex"
   (generated)
   "zapiska.aux"
   "zapiska.log"
+  "zapiska.toc"
   "zapiska.xdv"
   (rewritten before read)
