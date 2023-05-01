@@ -10,7 +10,8 @@
 *.fot
 *.cb
 *.cb2
-.*.lb
-.*.fdb_latexmk
-.*.synctex.gz
-.*.xdv
+*.lb
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+*.pdf
