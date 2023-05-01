@@ -1,11 +1,11 @@
 # Fdb version 4
-["xdvipdfmx"] 1682800255 "zapiska.xdv" "zapiska.pdf" "zapiska" 1682800255 0
-  "zapiska.xdv" 1682800255 76580 6187c369c3e5041e49ae74f85f7d4b09 "xelatex"
+["xdvipdfmx"] 1682800512 "zapiska.xdv" "zapiska.pdf" "zapiska" 1682800512 0
+  "zapiska.xdv" 1682800512 76792 9a2393c62a19bc501a03ef18a41e7a44 "xelatex"
   (generated)
   "zapiska.pdf"
   (rewritten before read)
-["xelatex"] 1682800254 "/home/dazzlemon/github/diplom/doc/zapiska.tex" "zapiska.xdv" "zapiska" 1682800255 0
-  "/home/dazzlemon/github/diplom/doc/zapiska.tex" 1682800254 2537 f58c989d299991c4ddf0811c3b9097ef ""
+["xelatex"] 1682800511 "/home/dazzlemon/github/diplom/doc/zapiska.tex" "zapiska.xdv" "zapiska" 1682800512 0
+  "/home/dazzlemon/github/diplom/doc/zapiska.tex" 1682800511 2692 13f36b305a19ca99089381a44310cbd7 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1680514707 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1680514707 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmex10.tfm" 1680514707 992 662f679a0b3d2d53c1b94050fdaa3f50 ""
@@ -84,6 +84,7 @@
   "/usr/share/texmf-dist/tex/latex/everypage/everypage.sty" 1678900920 2337 781b78f572435553b0c730d036a6e4ee ""
   "/usr/share/texmf-dist/tex/latex/extsizes/extarticle.cls" 1680514707 20602 3112294ba237d94ce4a1502cfef3594f ""
   "/usr/share/texmf-dist/tex/latex/extsizes/size14.clo" 1680514707 6214 cc6d832fdd2fc5f4a20ee1a002f45d0f ""
+  "/usr/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty" 1680514707 18450 88279bf67c81e69f8e3f1c1bad1a26c5 ""
   "/usr/share/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty" 1680514707 162076 2f6d31c4632f2730c57b9c0fda038e15 ""
   "/usr/share/texmf-dist/tex/latex/fontspec/fontspec.cfg" 1680514707 549 c4adac819276241fea8eb79c5ab7b99e ""
   "/usr/share/texmf-dist/tex/latex/fontspec/fontspec.sty" 1680514707 1656 7e824878bad4df5a3e8bba4e463d9126 ""
@@ -120,9 +121,9 @@
   "/usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty" 1680514707 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1680514707 39911 2da6c67557ec033436fe5418a70a8a61 ""
   "/var/lib/texmf/web2c/xetex/xelatex.fmt" 1682785757 11046109 7989ca79e51bc9442100022b98bf4917 ""
-  "zapiska.aux" 1682800255 3076 4aaa670122773c3423a32acd9b960c95 "xelatex"
-  "zapiska.tex" 1682800254 2537 f58c989d299991c4ddf0811c3b9097ef ""
-  "zapiska.toc" 1682800255 1543 ce5c6c0e45ff562eb04e09615c2f2f75 "xelatex"
+  "zapiska.aux" 1682800512 3076 4aaa670122773c3423a32acd9b960c95 "xelatex"
+  "zapiska.tex" 1682800511 2692 13f36b305a19ca99089381a44310cbd7 ""
+  "zapiska.toc" 1682800512 1543 ce5c6c0e45ff562eb04e09615c2f2f75 "xelatex"
   (generated)
   "zapiska.aux"
   "zapiska.log"

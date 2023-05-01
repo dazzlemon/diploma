@@ -7,6 +7,13 @@
 \usepackage{indentfirst}
 \usepackage{titlesec}
 \usepackage{stringstrings}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrule}{}
+\setlength{\headheight}{17pt}
 
 \setmainfont{Times New Roman}
 \linespread{1.5}
@@ -46,6 +53,7 @@
 
 титульний аркуш
 \BgThispage
+\thispagestyle{empty}
 
 \newpage
 завдання
