@@ -49,6 +49,11 @@
   \addcontentsline{toc}{section}{#1}%
 }
 
+\newcommand{\unnumberedSubsection}[1]{%
+  \subsection*{#1}%
+  \addcontentsline{toc}{subsection}{#1}%
+}
+
 \begin{document}
 
 
@@ -68,7 +73,7 @@
 \unnumberedSection{перелік умовних познак, символів, скорочень і термінів}
 УДК --- Універсальна десяткова класифікація
 
-НР - наукова робота
+НР --- наукова робота
 
 % ommited because it's only used for groupping
 % основну частину:
@@ -88,11 +93,15 @@
   та ефективний автоматизований інструмент для вибору
   та перевірки УДК шифрів НР.
 
+  % TODO: move this part to some other chapter
+  \section*{TODO: move to other section}
+  \BgThispage
   Перевірка може бути виконана у два кроки:
-  \begin{enumerate}[labelindent=\parindent, leftmargin=*]
+  \begin{enumerate}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
     \item Переклад
     \item Порівняння наданого шифру із перекладом.
   \end{enumerate}
+
   Переклад у свою чергу вимагає попереднього стискання
   вихідного тексту для виключення надмірностей.
   Через розміри та семантику шифрів,
