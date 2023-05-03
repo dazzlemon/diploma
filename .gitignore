@@ -15,3 +15,6 @@
 *.synctex.gz
 *.xdv
 *.pdf
+
+# libreoffice
+*.~lock*
