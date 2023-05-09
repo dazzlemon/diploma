@@ -13,6 +13,8 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{textcase}
 
+% TODO: make section uppercase in embedded links
+
 % Uppercase sections in ToC
 \makeatletter
 \let\oldcontentsline\contentsline
@@ -68,6 +70,7 @@
 
 \newcommand{\unnumberedSection}[1]{%
   \section*{#1}%
+  \phantomsection
   \addcontentsline{toc}{section}{#1}%
 }
 
@@ -92,14 +95,14 @@
 % зміст
 \tableofcontents
 
-\unnumberedSection{перелік умовних познак, символів, скорочень і термінів}
+\unnumberedSection{ПЕРЕЛІК УМОВНИХ ПОЗНАК, СИМВОЛІВ, СКОРОЧЕНЬ І ТЕРМІНІВ}
 УДК --- Універсальна десяткова класифікація
 
 НР --- наукова робота
 
 % ommited because it's only used for groupping
 % основну частину:
-  \unnumberedSection{вступ}  
+  \unnumberedSection{ВСТУП}  
   Задача, яку розглядає дана робота ---
   переклад та перевірка точності перекладу текстів (НР)
   з натуральної мови на формальну (шифр УДК).
@@ -134,7 +137,7 @@
   % основний текст кваліфікаційного проєкту (роботи):
 
   % TODO: add bibliographic references
-  \section{збір та аналіз вимог}
+  \section{ЗБІР ТА АНАЛІЗ ВИМОГ}
 
   \subsection{Універсальна десяткова класифікація}
   Універсальна десяткова класифікація (УДК) —--
@@ -287,28 +290,28 @@
   \lipsum[1-3]
   \BgThispage
 
-  \section{Проєктування}
+  \section{ПРОЄКТУВАННЯ}
   \subsection{Зовнішнє проєктування}
   \subsection{Внутрішнє проєктування}
   \subsection{Проєктування архітектури системи}
   \subsection{Висновки}
   \BgThispage
 
-  \section{розробка програми}
+  \section{РОЗРОБКА ПРОГРАМИ}
   \subsection{Висновки}
   \BgThispage
 
-  \section{тестування та налагодження}
+  \section{ТЕСТУВАННЯ ТА НАЛАГОДЖЕННЯ}
   \subsection{Висновки}
   \BgThispage
 
-  \unnumberedSection{загальні висновки та рекомендації}
+  \unnumberedSection{ЗАГАЛЬНІ ВИСНОВКИ ТА РЕКОМЕНДАЦІЇ}
   \BgThispage
 
-  \unnumberedSection{список використаної літератури}
+  \unnumberedSection{СПИСОК ВИКОРИСТАНОЇ ЛІТЕРАТУРИ}
   \BgThispage
 
-  \unnumberedSection{додатки}
+  \unnumberedSection{ДОДАТКИ}
   \BgThispage
 
 \end{document}
