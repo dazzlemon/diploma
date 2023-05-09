@@ -11,6 +11,24 @@
 \usepackage{enumitem}
 \usepackage{tabularx}
 \usepackage[hidelinks]{hyperref}
+\usepackage{textcase}
+
+% Uppercase sections in ToC
+\makeatletter
+\let\oldcontentsline\contentsline
+\def\contentsline#1#2{%
+  \expandafter\ifx\csname l@#1\endcsname\l@section
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi
+  {%
+    \oldcontentsline{#1}{\MakeTextUppercase{#2}}%
+  }{%
+    \oldcontentsline{#1}{#2}%
+  }%
+}
+\makeatother
 
 \hypersetup{linktoc=all}
 
@@ -118,7 +136,7 @@
   % TODO: add bibliographic references
   \section{збір та аналіз вимог}
 
-  \subsection{УНІВЕРСАЛЬНА ДЕСЯТКОВА КЛАССИФІКАЦІЯ}
+  \subsection{Універсальна десяткова класифікація}
   Універсальна десяткова класифікація (УДК) —--
   бібліографічна та бібліотечна класифікація,
   представляє систематичне впорядкування всіх галузей людських знань,
@@ -205,7 +223,7 @@
     \hline
   \end{tabular}
 
-  \subsection{АНАЛІЗ ПРОБЛЕМИ}
+  \subsection{Аналіз проблеми}
   Мета роботи ---
   розробити ПЗ для підбору та перевірки коректності УДК шифрів НР.
   Під підбором розуміється наступний функціонал --- на вході маємо текст роботи,
@@ -265,23 +283,23 @@
   у майбутньому щоб використовувати платну версію.
 
   \newpage
-  \subsection{висновки}
+  \subsection{Висновки}
   \lipsum[1-3]
   \BgThispage
 
-  \section{проєктування}
-  \subsection{зовнішнє проєктування}
-  \subsection{внутрішнє проєктування}
-  \subsection{проєктування архітектури системи}
-  \subsection{висновки}
+  \section{Проєктування}
+  \subsection{Зовнішнє проєктування}
+  \subsection{Внутрішнє проєктування}
+  \subsection{Проєктування архітектури системи}
+  \subsection{Висновки}
   \BgThispage
 
   \section{розробка програми}
-  \subsection{висновки}
+  \subsection{Висновки}
   \BgThispage
 
   \section{тестування та налагодження}
-  \subsection{висновки}
+  \subsection{Висновки}
   \BgThispage
 
   \unnumberedSection{загальні висновки та рекомендації}
