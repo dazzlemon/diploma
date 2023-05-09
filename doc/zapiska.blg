@@ -1,0 +1,14 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'zapiska.blg'
+[40] biber:340> INFO - === Tue May  9, 2023, 19:15:33
+[49] Biber.pm:419> INFO - Reading 'zapiska.bcf'
+[81] Biber.pm:979> INFO - Found 1 citekeys in bib section 0
+[88] Biber.pm:4419> INFO - Processing section 0
+[93] Biber.pm:4610> INFO - Looking for bibtex file 'zapiska.bib' for section 0
+[94] bibtex.pm:1713> INFO - LaTeX decoding ...
+[95] bibtex.pm:1519> INFO - Found BibTeX data source 'zapiska.bib'
+[99] UCollate.pm:68> INFO - Overriding locale 'uk-UA' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[99] UCollate.pm:68> INFO - Overriding locale 'uk-UA' defaults 'variable = shifted' with 'variable = non-ignorable'
+[99] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'uk-UA'
+[99] bbl.pm:660> INFO - Writing 'zapiska.bbl' with encoding 'UTF-8'
+[100] bbl.pm:763> INFO - Output to zapiska.bbl

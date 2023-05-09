@@ -12,6 +12,11 @@
 \usepackage{tabularx}
 \usepackage[hidelinks]{hyperref}
 \usepackage{textcase}
+\usepackage{url}
+\usepackage{csquotes}
+
+\usepackage[style=numeric]{biblatex}
+\addbibresource{zapiska.bib}
 
 % TODO: make section uppercase in embedded links
 
@@ -140,7 +145,7 @@
   \section{ЗБІР ТА АНАЛІЗ ВИМОГ}
 
   \subsection{Універсальна десяткова класифікація}
-  Універсальна десяткова класифікація (УДК) —--
+  Універсальна десяткова класифікація (УДК) \cite{udc_wiki} —--
   бібліографічна та бібліотечна класифікація,
   представляє систематичне впорядкування всіх галузей людських знань,
   організованих як узгоджена система,
@@ -308,8 +313,7 @@
   \unnumberedSection{ЗАГАЛЬНІ ВИСНОВКИ ТА РЕКОМЕНДАЦІЇ}
   \BgThispage
 
-  \unnumberedSection{СПИСОК ВИКОРИСТАНОЇ ЛІТЕРАТУРИ}
-  \BgThispage
+  \printbibliography[heading=bibintoc, title=СПИСОК ВИКОРИСТАНОЇ ЛІТЕРАТУРИ]
 
   \unnumberedSection{ДОДАТКИ}
   \BgThispage
