@@ -15,6 +15,12 @@
 *.synctex.gz
 *.xdv
 *.pdf
+*.run.xml
+
+# biblatex
+*.bbl
+*.blg
+*.bcf
 
 # libreoffice
 *.~lock*
