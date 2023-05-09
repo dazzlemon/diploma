@@ -14,8 +14,8 @@
 \usepackage{textcase}
 \usepackage{url}
 \usepackage{csquotes}
+\usepackage[style=numeric, sorting=none]{biblatex}
 
-\usepackage[style=numeric]{biblatex}
 \addbibresource{zapiska.bib}
 
 % TODO: make section uppercase in embedded links
@@ -251,10 +251,13 @@
   варто уточнити що ПЗ буде приймати їх
   у форматі plain-text на англійській мові.
 
-  Це можна розглядати як проблему класифікації --- маємо множину об'єктів,
+  Це можна розглядати як проблему класифікації
+  \cite{multiclass_classification_wiki}
+  \cite{statistical_classification_wiki} --- маємо множину об'єктів,
   які певним чином розподілені на класи (підмножини).
   Задача класифікації ---
-  різновид машинного навчання (англ. machine learning, далі —-- ML).
+  різновид машинного навчання
+  \cite{machine_learning_wiki} (англ. machine learning, далі —-- ML).
   Розрізняють два типи навчання:
   \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
     \item навчання з учителем (англ. supervised learning) ---
@@ -274,14 +277,15 @@
   потрібно отримати декілька робіт для кожного класу та підкласу
   та їх різних комбінацій. Тож пропонується простіший алгоритм:
   \begin{enumerate}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
-    \item Витягнемо з тексту роботи ключові слова.
+    \item Витягнемо з тексту роботи ключові слова.\cite{keyword_extraction_wiki}
     \item Порівняемо ключові слова із термінами та поняттями у каталозі УДК.
   \end{enumerate}
 
   Останній крок є дещо проблематичним
   через те що доступ до офіційного каталогу здійснюється на платній основі ---
   такий варіант не підходить для даного випадку через відсутність фінансування.
-  Але існують безкоштовні та/або відкриті каталоги,
+  Але існують безкоштовні та/або відкриті каталоги
+  \cite{udc_summary} \cite{udc_summary_linked},
   які можна використати замість платної версії.
   Авжеж вони мають свої недоліки, наприклад: менша частота оновлень,
   менший корпус інформації, тощо.
@@ -313,6 +317,7 @@
   \unnumberedSection{ЗАГАЛЬНІ ВИСНОВКИ ТА РЕКОМЕНДАЦІЇ}
   \BgThispage
 
+  \phantomsection
   \printbibliography[heading=bibintoc, title=СПИСОК ВИКОРИСТАНОЇ ЛІТЕРАТУРИ]
 
   \unnumberedSection{ДОДАТКИ}
