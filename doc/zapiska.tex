@@ -71,6 +71,15 @@
   {}
 \titlespacing*{\subsection}{0pt}{6pt}{0pt}
 
+\titleformat{\subsubsection}
+  { \fontsize{14pt}{14pt}
+  }
+  % TODO: sentence case
+  {\thesubsubsection~}
+  {0pt}
+  {}
+\titlespacing*{\subsubsection}{0pt}{6pt}{0pt}
+
 % all sections will start at new page
 \let\oldsection\section
 \renewcommand{\section}{\clearpage\oldsection}
@@ -375,6 +384,67 @@
   \end{itemize}
 
   \subsection{Проєктування архітектури системи}
+  \subsubsection{Вибір засобів програмування}
+  Для реалізації даного ПЗ було обрано мову Python,
+  як найпопулярнішу в даному напрямі.
+  Для вирішення задачі отримання ключових слів для заданого тексту
+  потрібен такий функціонал:
+  \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+    \item токенізація
+    \item видалення стоп слів
+    \item розмічування частин мови
+    \item розпізнавання іменованих сутностей
+  \end{itemize}
+  або готовий алгоритм виділення ключових слів.
+  Знайдено такі бібліотеки зі схожим функціоналом:
+  \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+    \item RAKE (Rapid Automatic Keyword Extraction)
+    \item YAKE (Yet Another Keyword Extractor)
+    \item SpaCy
+    \item NLTK (Natural Language Toolkit)
+    \item TextBlob
+    \item Gensim
+  \end{itemize}
+  YAKE потребує тренування на конкретному наборі даних ---
+  не підходить для цього випадку з тієї самої причини що й класифікація.
+
+  TextBlob є високорівневою обгорткою над NLTK,
+  тому їх доцільно розглядати разом.
+  Це бібліотеки загального призначення,
+  але їх можна відкинути з наступних причин:
+  \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+    \item вони програють SpaCy за швидкістю
+    \item SpaCy має кращі моделі
+    \item SpaCy має більш просунуті функції
+  \end{itemize}
+
+  Хоча SpaCy не має готового алгоритму витягування ключових слів,
+  його дуже легко реалізувати.
+
+  Алгоритм, який використовує RAKE працює наступним чином ---
+  текст розбивається на слова, потім перевіряється частота слів,
+  та ступінь їх появи з іншими,
+  слова сортуються за обома критеріями з попереднього кроку.
+
+  SpaCy не надає готово алгоритму виділення ключових слів,
+  але дає можливість розбити текст на слова, розмічати їх як частини мови,
+  розпізнати іменовані сутності.
+
+  Алгоритм RAKE чисто статистичний і має більшу похибку ---
+  він може вважати за ключові слова такі,
+  які не є вагомими та навпаки виключати важливі.
+
+  Gensim не має деяких важливих алгоритмів
+  для реалізації витягування ключових слів,
+  а ті які є в цій бібліотеці були розроблені, в першу чергу,
+  для інших цілей і не є оптимальними для нашої задачі.
+  З цього виходить що SpaCy є найкращим вибором:
+  \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+    \item має весь потрібний функціонал
+    \item має моделі
+    \item швидше за інші бібліотеки
+  \end{itemize}
+
   \subsection{Висновки}
 
   \section{РОЗРОБКА ПРОГРАМИ}
