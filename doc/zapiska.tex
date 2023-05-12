@@ -15,6 +15,8 @@
 \usepackage{url}
 \usepackage{csquotes}
 \usepackage[style=numeric, sorting=none]{biblatex}
+\usepackage{graphicx}
+\usepackage{float}
 
 \addbibresource{zapiska.bib}
 
@@ -303,10 +305,61 @@
 
   \section{ПРОЄКТУВАННЯ}
   \subsection{Зовнішнє проєктування}
+
+  Розробнику потрібна можливість тренувати модель.
+  Користувачу - отримувати припущення від натренованої моделі,
+  та опціонально порівнювати це припущення із припущенням користувача.
+  \begin{enumerate}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+    \item Тренування моделі
+      \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
+        \item вхід
+          \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
+            \item модель
+            \item текст
+          \end{itemize}
+        \item вихід
+          \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
+            \item нова модель
+          \end{itemize}
+      \end{itemize}
+    \item Отримання припущень від моделі
+      \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
+        \item вхід
+          \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
+            \item модель
+            \item текст
+          \end{itemize}
+        \item вихід
+          \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
+            \item список класів
+          \end{itemize}
+      \end{itemize}
+    \item Отримання припущень від моделі та порівняння із наданим шифром УДК
+      \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
+        \item вхід
+          \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
+            \item модель
+            \item текст
+            \item список класів
+          \end{itemize}
+        \item вихід
+          \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
+            \item список класів
+            \item ступінь відповідності класів
+          \end{itemize}
+      \end{itemize}
+  \end{enumerate}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics{use-case.drawio.png}    
+    \caption{Діаграма прецедентів}
+    \label{fig:use-case}
+  \end{figure}
+
   \subsection{Внутрішнє проєктування}
   \subsection{Проєктування архітектури системи}
   \subsection{Висновки}
-  \BgThispage
 
   \section{РОЗРОБКА ПРОГРАМИ}
   \subsection{Висновки}
