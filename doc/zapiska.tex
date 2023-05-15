@@ -17,6 +17,13 @@
 \usepackage[style=numeric, sorting=none]{biblatex}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{caption}
+
+\DeclareCaptionLabelFormat{dstuFigLabel}{Рисунок #2}
+\DeclareCaptionLabelSeparator{abobasep}{ --- }
+\captionsetup[figure]{labelformat = dstuFigLabel
+                     ,labelsep    = abobasep
+                     }
 
 \addbibresource{zapiska.bib}
 
