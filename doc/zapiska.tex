@@ -18,6 +18,15 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{caption}
+\usepackage{listings}
+
+\lstnewenvironment{mycode}[1][]{
+  \lstset{
+    basicstyle=\small\ttfamily,
+    captionpos=b,
+    #1
+  }
+}{}
 
 \DeclareCaptionLabelFormat{dstuFigLabel}{Рисунок #2}
 \DeclareCaptionLabelSeparator{abobasep}{ --- }
@@ -561,8 +570,82 @@
   \subsection{Висновки}
 
   \section{РОЗРОБКА ПРОГРАМИ}
+  \subsection{Розробка інтерфейсу користувача}
+  Для простоти виконання буде використано інтерфейс командного рядка (CLI). 
+  Для цієї задачі в мові python є спеціалізований модуль argparse.
+
+  З розробленої use-case діаграми можна сказати шо є два режими роботи
+  (стільки  ж скільки й акторів).
+  Через те що режими тільки два, доцільно використати прапор.
+  Основним сценарієм є припущення,
+  тому прапор буде використовуватися для тренування "--training".
+  
+  Модель та текст присутні на вході кожного випадку,
+  тому їх можна зробити позиційними аргументами.
+  
+  Список класів є тільки в одному випадку,
+  тому це буде опціональним аргументом,
+  який буде прийматися тільки якщо відсутній прапор "--training",
+  цей аргумент буде помічатись як "--udc".
+  Для припущення результат буде надаватися в stdout у наступному форматі:
+  список класів та ступінь їх відповідності, якщо використано "--udc".
+  
+  Маємо такі сценарії використання:
+  \begin{enumerate}
+    \item Тренування моделі
+      \begin{mycode}[caption={Тренування моделі}, label={code:training_ex}]
+        $ udc-classifier \
+            model.model \
+            scientific-work.txt \
+            --training updated-model.model
+      \end{mycode}
+      \begin{itemize}
+        \item udc-classifier --- назва виконуваного файлу
+        \item model.model --- назва файлу існуючої моделі
+        \item scientific-work.txt --- назва файлу з текстом наукової роботи
+        \item updated-model.model --- назва файлу, до якого буде записано нову модель
+      \end{itemize}
+    
+    \item Отримання припущення
+      \begin{mycode}[caption={Отримання припущення}, label={code:result_prompt_ex}]
+        $ udc-classifier model.model scientific-work.txt
+      \end{mycode}
+      \begin{mycode}[caption={Припущення (класи, які можуть підійти до наданого тексту)}
+                    , label={code:result_ex}]
+        539.120 94 084.3
+      \end{mycode}
+      \begin{itemize}
+        \item udc-classifier --- назва виконуваного файлу
+        \item model.model --- назва файлу існуючої моделі
+        \item scientific-work.txt --- назва файлу з текстом наукової роботи
+      \end{itemize}
+
+    \item Отримання припущення та порівняння класів
+      \begin{mycode}[caption={Отримання припущення та порівняння класів}, label={code:result_prompt_ex2}]
+        $ udc-classifier \
+            model.model \
+            scientific-work.txt \
+            --udc ‘913(574.22)"19"(084.3)’
+      \end{mycode}
+      \begin{mycode}[caption={Припущення}
+                    , label={code:result_ex2}]
+        539.120 94 084.3
+        0.3
+      \end{mycode}
+      \begin{itemize}
+        \item udc-classifier --- назва виконуваного файлу
+        \item model.model --- назва файлу існуючої моделі
+        \item scientific-work.txt --- назва файлу з текстом наукової роботи
+        \item третій рядок прикладу ---
+        класи, які можуть підійти до наданого тексту
+        \item другий рядок --- вхідний шифр УДК
+        \item четвертий рядок --- ступінь відповідності класів
+        (від 0 до 1, де 0 --- відсутні співпадіння, 1 --- повне співпадіння)
+      \end{itemize}
+  \end{enumerate}
+
+
   \subsection{Висновки}
-  \BgThispage
 
   \section{ТЕСТУВАННЯ ТА НАЛАГОДЖЕННЯ}
   \subsection{Висновки}
