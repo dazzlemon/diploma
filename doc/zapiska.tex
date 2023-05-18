@@ -18,6 +18,8 @@
 \usepackage{float}
 \usepackage{caption}
 \usepackage{listings}
+\usepackage{rotating}
+\usepackage[export]{adjustbox}
 
 \lstnewenvironment{mycode}[1][]{
   \lstset{
@@ -513,12 +515,14 @@
     ці дії (режими роботи додатку) на окремі методи в класах Main та Backend.
   \end{itemize}
 
-  \begin{figure}[H]
+  \begin{sidewaysfigure}[htbp]
     \centering
-    \includegraphics[angle=90, height=\textwidth]{io_uml5.drawio.png}    
+    \includegraphics[height=0.6\textwidth]{io_uml5.drawio.png}    
     \caption{UML-діаграма 5}
     \label{fig:io_uml5}
-  \end{figure}
+  \end{sidewaysfigure}
+
+  \newpage
 
   \subsection{Вибір засобів програмування}
   Для реалізації даного ПЗ було обрано мову Python,
