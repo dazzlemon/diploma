@@ -558,6 +558,27 @@
   Також внутрішня реалізація буде напряму залежати
   від типів UdcPredictorTextInput та UdcPredictorModel.
 
+  Нова версія (рис. \ref{fig:io_uml6}) вирішує вище описані проблеми
+  наступним чином:
+  \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+    \item внутрішня реалізація тепер має два методи ---
+    припущення та тренування,
+    вони напряму залежать від типів UdcPredictorModel та \\ UdcPredictorInputText.
+    \item тип/клас/модуль UdcCode відподідає за представлення шифрів УДК
+    та їх порівняння,
+    модуль Main перетворює рядок отриманий від UdcArgParser на цей тип.
+    \item усі взаємодії із файлами відбуваются у класі Main.
+  \end{itemize}
+
+  \begin{sidewaysfigure}[htbp]
+    \centering
+    \includegraphics[height=0.45\textwidth]{io_uml6.drawio.png}    
+    \caption{UML-діаграма 6}
+    \label{fig:io_uml6}
+  \end{sidewaysfigure}
+
+  \newpage
+
   \subsection{Вибір засобів програмування}
   Для реалізації даного ПЗ було обрано мову Python,
   як найпопулярнішу в даному напрямі.
