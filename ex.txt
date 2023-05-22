@@ -1,0 +1,723 @@
+arXiv:2305.11193v1 [astro-ph.GA] 18 May 2023
+
+Implementation of Rare Isotopologues into Machine
+Learning of the Chemical Inventory of the Solar-Type
+Protostellar Source IRAS 16293-2422
+Zachary T.P. Fried,a Kin Long Kelvin Lee,b Alex N. Byrne,c and Brett A. McGuired,e
+
+Machine learning techniques have been previously used to model and predict column densities in the
+TMC-1 dark molecular cloud. In interstellar sources further along the path of star formation, such as
+those where a protostar itself has been formed, the chemistry is known to be drastically different from
+that of largely quiescent dark clouds. To that end, we have tested the ability of various machine
+learning models to fit the column densities of the molecules detected in source B of the Class 0
+protostellar binary IRAS 16293-2422. By including a simple encoding of isotopic composition in our
+molecular feature vectors, we also examine for the first time how well these models can replicate the
+isotopic ratios. Finally, we report the predicted column densities of the chemically relevant molecules
+that may be excellent targets for radioastronomical detection in IRAS 16293-2422B.
+
+1
+
+Introduction
+
+The observation of interstellar molecules is a central component
+of astrochemical studies. Molecular species have shaped our understanding of star 1 and planet formation 2 , can trace stellar outflows 3 , interstellar shocks 4 , and protoplanetary disks 5 , and can
+serve as probes of the physical conditions of interstellar sources
+such as the temperature 6 . However, until recently, in order to
+model interstellar abundances and predict new molecules for detection, observations have relied on complex chemical models
+based on a vast network of interconnected reactions (e.g. Ruaud
+et al. 7 , Wakelam et al. 8 ). While these astrochemical models can
+be excellent tools to explore specific chemical processes that occur
+in space, their predictive ability can also be quite limited for several reasons (e.g. McGuire et al. 9 ). Firstly, these models are by
+definition incomplete representations of the true chemical complexity of the interstellar medium because network expansions
+rely on human input. Additionally, the networks are oftentimes
+dependent on uncertain extrapolated rate constants 10 .
+In an attempt to predict molecular abundances without the
+
+a
+
+Department of Chemistry, Massachusetts Institute of Technology, Cambridge, MA
+02139; E-mail: zfried@mit.edu
+b
+Accelerated Computing Systems and Graphics Group, Intel Corporation, 2111 NE
+25th Ave., Hillsboro, OR 97124
+c
+Department of Chemistry, Massachusetts Institute of Technology, Cambridge, MA
+02139
+d
+Department of Chemistry, Massachusetts Institute of Technology, Cambridge, MA
+02139; E-mail: brettmc@mit.edu
+e
+National Radio Astronomy Observatory, Charlottesville, VA 22903
+† Electronic Supplementary Information (ESI) available: [details of any supplementary information available should be included here]. See DOI: 00.0000/00000000.
+
+need for complete networks, Lee et al. 11 introduced a novel
+methodology involving machine learning. A major benefit of
+their approach contrasts traditional astrochemical modeling, as
+it requires no prior knowledge of the conditions of an interstellar source or any reaction pathways involving the previously detected molecules. Instead, abundances are expressed purely in
+terms of a chemical vector space. Simple regression algorithms
+were shown to significantly outperform traditional astrochemical
+models in reproducing the abundances of molecules already observed, and provided a straightforward way to extrapolate to yet
+undetected molecules.
+An interstellar source for which this machine learning technique could be effectively applied is the Class 0 protostar IRAS
+16293-2422B (hereafter referred to as IRAS 16293B). IRAS
+16293B is one component of the protostellar binary IRAS 16293,
+which is located in the L1689 region of the ρ Ophiuchus cloud
+complex. This protostar comprises two separate components,
+IRAS 16293A and IRAS 16293B, which are separated by around
+5.100 12–14 . Extensive observations have been made of this source
+with the Atacama Large Millimeter/submillimeter Array (ALMA)
+as part of the Protostellar Interferometric Line Survey (PILS) program 15 . The submillimeter spectrum toward IRAS 16293B is especially rich with more than 10,000 features detected 15 . The line
+widths of the spectral peaks are also extremely narrow for a star
+forming region (∼1 km/s FWHM), which significantly reduces
+line confusion and makes this an excellent source for molecular
+detections.
+The predictive power of the machine learning method introduced by Lee et al. 11 may be especially useful for IRAS 16293B
+since a large portion of the molecular lines in the interstellar line
+
+
+survey remain unassigned. In fact, as of 2018, Taquet et al. 16
+noted that approximately 70% of the 5σ transitions identified
+in the ALMA Band 6 dataset were unidentified. If successful,
+this method might be able to provide an unbiased list of astrochemical targets not yet detected but which might be abundant
+enough to be contributing to the unidentified molecular lines.
+If subsequently detected, these molecules and their abundances
+could then be used to further constrain both the machine learning model and traditional network-based astrochemical models
+of low mass protostars. These models provide invaluable insight
+into the chemical processes and conditions relevant to the formation of stars similar to our Sun.
+One aspect of interstellar chemistry that was not treated in the
+work of Lee et al. 11 was the incorporation of isotopically substituted species. While certainly such rare isotopologues are present
+and detectable in TMC-1 17 , detections of these species are more
+common toward IRAS 16293B and therefore provide substantially
+more insight into the chemical and physical history of this source.
+Therefore, it is desireable to update the machine learning model
+to include isotopologues. Molecules in IRAS 16293B consistently
+display isotopic ratios that are enhanced compared to the mean
+solar value and other interstellar sources, especially deuterium
+(D) and 13 C substituted species. In fact, the deuterated isotopologues of ethanol, ketene, acetaldehyde, formic acid, formamide,
+and isocyanic acid were all first detected toward this source 18,19 .
+Various doubly and triply deuterated species have been detected
+as well (e.g. Ilyushin et al. 20 , Persson et al. 21 ). Additionally, the
+12 C/13 C ratios of dimethyl ether, methyl formate, ethanol, and
+glycolaldehyde toward IRAS 16293B are all much lower than the
+12 C/13 C ratio of the local ISM 15,18 . By convention, the deuterium
+ratios are reported as D/H while the 13 C ratios are reported in the
+inverse manner. Therefore, a high D/H ratio and low 12 C/13 C ratio both denote isotopic enhancement.
+A large portion of the remaining unassigned spectral peaks
+are predicted to arise from isotopically substituted species. In
+fact, Jørgensen et al. 15 note that only 25% of the transitions
+correspond to the most common organic molecules detected in
+hot cores, including formaldehyde, methanol, methyl cyanide,
+isocyanic acid, ethanol, acetaldehyde, methyl formate, dimethyl
+ether, and ketene. Following this, they predict that the majority of
+the remaining transitions are likely related to various isotopically
+substituted molecules as well as more complex organic species.
+Thus, it is also vital to accurately model the column densities of
+isotopically substituted molecules so that the high abundance isotopologues in this source can be predicted, measured as needed
+in the laboratory, and their signals in the PILS survey identified
+and assigned.
+Additionally, machine learning predictions of isotopic ratios are
+also useful since these ratios can act as tracers of the evolutionary history of an interstellar source along with the conditions,
+timescales, and pathways of molecular formation. For example,
+deuterium fractionation relies on gas-phase isotope exchange reactions that are strongly dependent on the temperature. Consequently, the deuterium fraction is a tracer of the conditions of
+the interstellar environment during molecular formation, with
+a high D/H ratio (i.e. high deuterium fraction) indicating cold
+
+
+formation temperatures 22,23 . Therefore, accurate prediction of
+isotopic ratios would allow us to gain insight into the details of
+molecular formation and source history without requiring a dedicated search for these isotopically-substituted species that are often present in fairly low abundance.
+In this work we apply the machine learning technique introduced by Lee et al. 11 to IRAS 16293B. The machine learning
+pipeline used for this project along with the isotopic encoding
+is described in Section 3. Section 4.1 then presents the ability of
+the supervised machine learning regressors to model the molecular column densities in this source. Using these trained regression
+models, we obtain an unbiased list of predicted high-abundance
+targets for astronomical observation. Analysis of these molecular
+targets is presented in Section 4.2. Next, in Section 4.3 we test
+the ability of the regressors to model the isotopic ratios in this
+source. Finally, a list of high predicted column density isotopologues is provided in Section 4.4.
+
+2
+
+Dataset
+
+The molecules included in the dataset for this work were mostly
+detected through observations from the PILS survey 15 . IRAS
+16293A is an edge-on disk system while IRAS 16293B has a faceon orientation. This results in the line widths of the spectral
+peaks toward source A being much wider 15 . Consequently, there
+is much more overlap of the spectral peaks, making the identification of individual signals more challenging and resulting in
+fewer definitive molecular detections toward source A. Our analysis therefore focused solely on IRAS 16293B. Most molecules were
+detected at a one-beam (0.500 ) offset position from the continuum
+peak of source B in the south-west direction. The coordinates of
+this one-beam offset position are α J2000 = 16h 32m 22s .58, δ J2000
+= −24◦ 280 32.800 . A few of the species, however, were detected at a
+half-beam offset. For these molecules, the column densities have
+been reduced by a factor of 2.136 to account for this different
+pointing position 24 . In total, our dataset includes 98 molecules.
+Of these, 43 are main isotopologues and 55 are isotopically substituted species. All molecules in the dataset are listed in Table 6
+in the Appendix. Our dataset contains 27 deuterium substituted
+species, 15 13 C substituted species, two 15 N substituted species,
+four 34 S substituted species, two 33 S substituted species, two 17 O
+substituted species, and three 18 O substituted species. Additionally, several doubly deuterated molecules along with one triply
+deuterated molecule is included.
+
+3
+
+Model Description
+
+The machine learning pipeline has three main components: (1)
+molecular featurization, (2) modeling the column densities in
+IRAS 16293B using supervised regressors, and (3) prediction of
+high abundance astrochemical targets. An outline of this entire process is depicted in Figure 8 in the Appendix. In this
+work, the process of molecular featurization and regression is
+quite similar to the methods introduced by Lee et al. 11 . In
+summary, a M OL 2 VEC 25 model is first trained on a dataset of
+3,634,046 molecules collected from various online databases like
+Pubchem 26 , ZINC 27 , and the NASA PAH database 28–30 . This
+trained embedding model then creates 70 dimensional feature
+
+vectors for all molecules in the dataset, in addition to the detected
+interstellar species.
+In order to include isotopologues in the training set and investigate isotopic ratios, it was necessary to encode isotopic composition in the feature vectors. In its current form, M OL 2 VEC is
+not able to fully capture isotopic information. For example, it
+creates unique vectors for deuterium-substituted molecules but
+not for molecules that are substituted with 13 C. This is because
+the molecular substructures are first encoded using Morgan fingerprints 31 , which do not by-default capture differences in 13 Csubstituted isotopologues (e.g. the default RDKIT-constructed 32
+Morgan fingerprint of H2 CO and H2 13CO are identical). To differentiate between each of the isotopologues in our dataset, we
+ensure that the M OL 2 VEC-generated vectors are identical for all
+isotopologues of the same species and then add 19 extra dimensions that encode isotopic information as well as the chemical
+environment of the isotopic substitution. The isotopic encoding is
+designed as follows:
+
+
+The RDK IT module was used to obtain hybridization and bonding information 32 . Because of the limited number of unique
+isotopologues in our dataset, the selection of these hand-picked
+features was largely dependent on which chemical substructures
+are present in enough molecules to constitute a reasonably sized
+training set. More specifically, each of the isotopic features denoted by dimensions 10-19 are present in at least three molecules
+in the dataset. Each of the selected features also has a notable
+impact on the average isotopic ratio.
+
+Additionally, M OL 2 VEC was unable to differentiate between
+several conformers of the detected molecules. Examples include
+ethylene glycol (for which both the aGg’ and gGg’ conformers
+were detected) as well as monodeuterated CH2 DCH2 OH and
+CH2 DOCH3 . For consistency, we inputted the column density of
+the most stable or abundant conformer in each case.
+Using the resulting feature vectors as inputs and the log10 column densities as outputs, the data was split 80/20 into training
+and testing sets. In order to mitigate data leakage, all isotopologues of the same molecule were assigned to either the training
+or testing set. The datapoints were then bootstrapped with Gaussian noise in order to increase the effective dataset size to 800
+and control overfitting.
+These resulting training and testing sets were then fed into
+two separate supervised machine learning regressors: Gaussian
+process regression (GPR) 33 and Bayesian ridge regression (BR).
+These models learn relationships between the vector components
+to map the molecular features to the column density data. Each
+of the models were implemented with the SCIKIT- LEARN Python
+module 34 . We determined the optimal hyperparameters for each
+model by first splitting the data into traning and testing sets and
+then running a 5-fold grid search on the training data.
+GPR is a nonparametric model that defines a probability distribution over all functions that can map the molecular descriptors
+to the column densities. It is therefore able to handle nonlinear
+relationships in the data. A kernel provides the model with prior
+knowledge regarding the shape and smoothness of the functions.
+Similarly to Lee et al. 11 , the kernel we used was a linear combination of the rational quadratic, dot product, and white noise
+kernels. Along with the kernel function, additional hyperparameters include a noise value added to the kernel matrix diagonal that
+denotes the inherent Gaussian noise of the training observations.
+BR is a linear regressor that takes a probabilistic approach to
+optimize the ridge regression model coefficients. It does this by
+using a Gamma distribution prior for the regularization coefficients. These parameters are then optimized through maximization of the log marginal likelihood. For this regressor, the hyperparameters define the shape and inverse scale of the Gamma
+distribution priors over the various model parameters.
+Similarly to Lee et al. 11 , a linear model is included in order to
+provide a baseline performance using an extremely simple model
+with a limited number of parameters. Bayesian ridge was specifically chosen due to its ability to report prediction uncertainties,
+which allows us to gauge the confidence level of the predicted
+values. A GPR model then displays the ability of a more complex
+model to improve upon this baseline regressor. GPR was also chosen due to its probabilistic and nonlinear nature. The reported
+uncertainties are fairly informative and interpretable since they
+can be linked directly to the designed covariance matrix.
+Following the training of the regression models, the column
+densities of the molecules that are most chemically similar to
+those detected in IRAS 16293B were predicted using the trained
+models. K-means clustering with k = 10 was used to cluster the
+entire dataset of 3,634,046 feature vectors. Each of the molecules
+detected in IRAS 16293B was assigned to a single cluster. Thus,
+we only considered the molecules assigned to this cluster when
+
+searching for detectable new species.
+When analyzing the ability of the regressors to model the
+molecules in the training set and subsequently predict the column densities of the species in the testing set, we were limited
+to the molecules that have been previously detected toward IRAS
+16293B. We were therefore only able to gauge the performance
+of these models on molecules that are relevant to this fairly small
+and homogeneous dataset. Consequently, we proceeded to remove the molecules that had no or few chemically similar examples in the dataset since the models did not have sufficient training examples to learn the required relationships for these species
+and we had no ability to gauge the accuracy of the model predictions. For this additional filtering, we removed molecules that
+contained atoms other than hydrogen, carbon, sulfur, nitrogen,
+and oxygen because all of the previously detected molecules were
+predominantly composed of these atoms. Additionally, we also removed the remaining free radical species because nitrous oxide is
+the only free radical for which a column density has been derived
+toward IRAS 16293B. This minuscule training set of free radicals
+resulted in the models not being able to sufficiently handle these
+molecules. For example, the free radical counter-parts of various
+molecules had much higher predicted column densities than the
+observed values of the parent species. This is very unlikely due to
+the instability of free radicals and the general under abundance
+of radicals in protostellar sources. In fact, while 36.5% of interstellar molecules were first detected in star-forming regions, only
+13.5% of radical species were first detected in these protostellar
+sources 35 . This under abundance may be due to the larger gasphase chemical inventory and warmer kinetic temperatures leading to a greater number of destruction partners for these highly
+reactive species. Following these filtering steps, the column densities of the remaining 84,863 molecules were then predicted using
+the previously trained regression models.
+
+4
+
+Results and Discussion
+
+4.1
+
+Regression Analysis
+
+Figure 2 shows the training and testing results of each regression
+model. The train/test splits were consistent in each case. Just
+as shown in Lee et al. 11 ’s study of TMC-1, each of the regressors
+were able to accurately model the column densities in this source.
+The strong performance on the test set also provides confidence
+that the models can generalize well to relevant molecules that
+were not included in the training set.
+Additionally, although the BR model showed an ability to precisely model the column densities with lower uncertainties than
+the GPR regressor, it was mainly limited by its linear mapping.
+With our current isotope encoding, a linear model will be unable
+to fully capture the relevant isotopic fractionation. For example,
+the difference between a singly and doubly deuterated molecule
+is in-part denoted with a 2 instead of a 1 in a single vector dimension. That said, the difference in the column densities of singly
+and doubly deuterated species is typically not simply 2/1 and can
+differ significantly between molecules. Thus, for the remainder
+of the analysis, a GPR model was used since a nonlinear mapping
+was required.
+
+The large error bars on the GPR predictions are in part due
+to the small size of the dataset. Additional molecular detections
+(especially of main isotopologues) toward this source will allow
+for further constrained predictions. Moreover, despite the overall
+strong performance of the GPR model, this regressor overpredicts
+ethylene glycol (OHCH2 CH2 OH) and dimethyl ether (CH3 OCH3 )
+by over one order of magnitude. This prediction inaccuracy is
+likely because these molecules have few nearby neighbors in the
+training set. In fact, these molecules are the 10th and 12th furthest
+species from any neighbor in the dataset, respectively. Ethylene
+glycol is especially unique in that it is the only molecule in the
+dataset containing two hydroxyl groups. Additionally, ethylene
+glycol’s nearest neighbors are methoxymethanol and ethanol,
+each of which are more abundant.
+Another notable prediction error is the slight overprediction of
+chloromethane and underprediction of methanol since it highlights the shortcomings of our molecular featurization. M OL 2 VEC
+creates molecular feature vectors by combining vector representations of chemical substructures. Therefore, small molecules
+with some shared substructures have extremely similar feature
+vectors. In this case, M OL 2 VEC generates similar feature vectors
+for all molecules that contain a methyl group bonded to a single
+heteroatom. Despite obvious chemical differences, the resulting
+vector representations of chloromethane and methanol are therefore very similar. Since methanol is one of the most abundant
+molecules in the dataset and chloromethane is one of the least
+abundant, the resulting prediction errors are fairly unsurprising.
+In order to test the efficacy of the chosen kernel for the
+GPR model, we predicted the column density of cimetidine
+C10 H16 N6 S. This molecule is far more complex than any other
+species in our dataset and would certainly have an extremely low
+abundance in the interstellar medium. Therefore, an effective
+kernel would also produce a low column density prediction for
+this species. Ultimately, the trained GPR model predicted this
+molecule to have a column density of 6.94 × 106 cm−2 , which is
+nearly eight orders of magnitude lower than any main isotopologue in the dataset. This provides confidence that the model is
+not over-fitting to the dataset and simply learning to predict each
+column density to be in the range of the detected species.
+4.2
+
+Targets for astrochemical study
+
+Using the trained GPR model, we then predicted the column
+densities of the aforementioned 84,863 astrochemically relevant
+molecules assigned to the same cluster as the IRAS 16293B detections. To enhance the confidence in our predicted values and
+further limit our investigation to chemically relevant molecules,
+our analysis was solely focused on species for which the 1σ prediction uncertainty was less than five orders of magnitude; there
+were 242 such species. Figure 3 shows the 10 molecules with the
+highest predicted column densities. All predictions are provided
+in the associated GitHub repository.
+The chemical composition of the predicted molecules is displayed in Table 1. Oxygenated hydrocarbons were typically predicted to be in high abundance while those containing nitrogen
+and sulfur were predicted to have lower column densities. Of
+
+Hydrogen Peroxide (H2 O2 )
+
+Hydrogen peroxide was first observed toward the SM1 core in
+ρ Oph A through several torsion-rotation transitions 40 . This
+molecule is proposed to form on grain surfaces via successive hydrogen additions to O2 41 . If hydrogen peroxide were to be detected, another possible molecular candidate is HO2 . This radical
+is generated after the first of these successive hydrogen additions
+to molecular oxygen and was also detected toward ρ Oph A with
+a similar abundance to hydrogen peroxide 42 .
+4.2.2
+
+Methyl Hydroperoxide (CH3 OOH)
+
+Methyl hydroperoxide is a very attractive candidate for interstellar detection. This organic peroxide is structurally similar
+to many of the small chemical species that have been detected
+in the interstellar medium, such as hydrogen peroxide 40 . Additionally, multiple energetically feasible products of methyl hydroperoxide UV photodissociation have been detected in space,
+including the OH and CH3 O radicals 43–45 . The microwave and
+millimeter-wave spectra of this molecule have been previously
+experimentally studied and assigned, thus allowing for radioastronomical detection 46 . To the best of our knowledge, no dedicated search for this molecule has been conducted toward any
+interstellar source.
+Fig. 3 The 10 undetected molecules with the highest predicted column
+densities. The molecules were drawn from the collection of species that
+were assigned to the same cluster as each of the detected molecules
+through k-means clustering. Predictions were made using the trained
+Gaussian process regression model. 1σ column density uncertainties are
+shown.
+
+the 20 highest predicted column density molecules, 15 contain at
+least one oxygen atom, while 2 contain a nitrogen atom, and 1
+contains a sulfur atom. The preference for oxygen-substituted
+molecules is not surprising since the most abundant detected
+species in IRAS 16293B are carbon monoxide (CO), methanol
+(CH3 OH), formaldehyde (H2 CO), methyl formate (HCOOCH3 ),
+dimethyl ether (CH3 OCH3 ), carbonyl sulfide (OCS), and ethanol
+(CH3 CH2 OH) – each of which contain an oxygen atom.
+Highly saturated molecules were also predicted to be very
+abundant in IRAS 16293B. This is to be expected in a protostellar source since hydrogenation is very efficient on grain surfaces.
+Therefore, many of the species that are sublimated from grains
+as the protostar heats the surroundings are highly saturated (e.g.
+Linnartz et al. 36 , Fedoseev et al. 37 , Woon 38 , Garrod et al. 39 ).
+The predictions also display a preference for lighter molecules
+that contain less heavy atoms. This also matches the detected
+chemical inventory in IRAS 16293B, in which the seven highest
+abundance molecules each contain four or less heavy atoms.
+The proceeding subsections highlight the astrochemical relevance of some of the molecules with the highest predicted column
+densities in Figure 3. It is important to note that while a high column density is beneficial for interstellar molecular detectability,
+various additional factors must also be considered including the
+magnitude of the dipole moment, the spectral pattern, and intrinsic line strengths.
+
+Methanediol (OHCH2 OH)
+
+Methanediol is the simplest diol molecule and is of astrochemical
+interest due to its similarity to previously detected species such as
+methanol. Through modeling efforts, it has been proposed that
+this molecule is generated via grain surface reactions of the OH
+and CH2 OH radicals 39 . For years, methanediol has been extensively studied in the aqueous phase (e.g. Möhlmann 47 , Matsuura
+et al. 48 , Ryabova et al. 49 ). However, gaseous production and
+detection of this molecule was only reported in the past year 50 .
+To our knowledge, there have been no previous high-resolution
+microwave studies of this species. Thus, without experimental
+rotational parameters, definitive interstellar detection using radioastronomy is currently impossible.
+4.2.4
+
+Methoxyethanol (CH3 OCH2 CH2 OH)
+
+This molecules is in the same chemical family as
+methoxymethanol
+(CH3 OCH2 OH)
+and
+methoxyethane
+(CH3 OCH2 CH3 ), which have large column densities of 1.4 × 1017
+cm−2 and 1.8 × 1016 cm−2 toward IRAS 16293B, respectively 51 .
+The methoxy radical (CH3 O) has been detected in space and is
+proposed to form through methanol photodissociation, gas-phase
+reactions between the OH radical and methanol, and hydrogen
+addition to H2 CO 52 . Additionally, methoxymethanol has been
+shown to form via a reaction of the methoxy radical with
+CH2 OH 39 . The methoxy radical could feasibly react with other
+organic radicals to form the methoxylated versions of various
+additional organic species. Therefore, the methoxylated counterparts of the high abundance organics in this source could be
+interesting radioastronomical targets. However, the microwave
+spectrum of methoxyethanol has only been experimentally
+collected and assigned up to 26.5 GHz 53 .
+
+
+Ethane (C2 H6 ), Carbon Dioxide (CO2 ), and Carbon
+Disulfide (CS2 )
+
+For an allowed pure rotational spectrum to be collected, a
+molecule must have a nonzero dipole moment. Therefore, nonpolar molecules like ethane, carbon dioxide, and carbon disulfide
+will be undetectable through radioastronomy based on allowed
+pure rotational transitions regardless of their high predicted column densities. However, ethane was first detected toward the
+comet C/1996 B2 Hyakutake with high-resolution infrared spectroscopy 54 . Both solid and gaseous CO2 have also been detected
+toward various interstellar sources using IR techniques 55,56 . CS2
+has not been previously detected in the interstellar medium. That
+said, experimental studies have shown that CS2 can react with
+oxygen atoms on solid surfaces under astrophysically relevant
+conditions to form carbonyl sulfide (OCS), which is detected in
+high abundance toward IRAS 16293B 57,58
+4.2.6
+
+3-Hydroxypropanal (OHCH2 CH2 CHO)
+
+Hydroxyacetone (CH3 COCH2 OH), a structural isomer of 3hydroxypropanal, was detected with a column density of
+1.2 × 1016 cm−2 toward IRAS 16293B 59 . Experiments by Wang
+et al. 60 showed that 3-hydroxypropanal can be formed in
+methanol-acetaldehyde ices irradiated with energetic electrons at
+5 K. They concluded that this molecule can be produced in interstellar ices of star-forming regions that have high abundances of
+methanol and acetaldehyde (which is the case in IRAS 16293B).
+This molecule would then be desorbed into the gas phase as the
+protostar is heated. However, to our knowledge the rotational
+spectrum of 3-hydroxypropanal has not been experimentally measured.
+4.3
+
+Isotope Ratios
+
+Since isotopic composition was encoded in our molecular feature
+vectors, we proceeded to test the regressors’ ability to predict isotopic ratios. As noted previously, if the machine learning model
+can accurately predict isotope ratios, information about the evolutionary history of the source and the molecular formation can
+be deciphered. That said, with such a simple encoding of the isotopic information in our feature vectors as well as the relatively
+small collection of isotopically substituted molecules, modeling
+this nuanced chemistry will be a challenge. Our discussion will
+solely focus on 13 C and D substituted isotopologues because of
+the extremely small sample size of all other minor isotopes.
+Figure 4 displays the predicted column densities of the D and
+13 C substituted isotopologues along with the corresponding isotopic ratios. These predictions stem from 5-fold cross validation
+on the isotopically substituted data. In this process, the isotopologues are split into five subsets of training and validation data.
+In each iteration, 20% of the isotopically substituted molecules
+are left out of the training set. The model is then trained on all
+molecules in the dataset besides the 20% of rare isotopologues
+that were assigned to the validation set.
+Because the deuterium and 13 C ratios are reported in inverse
+fashions, the mean squared errors of the two ratio plots differ
+dramatically. The points within the shaded regions denote the
+
+molecules for which the prediction error is less than the mean
+absolute prediction error. For the D/H ratios, the mean absolute
+error is 0.032. For the 12 C/13 C ratios, the mean absolute error is
+20.9.
+The column density predictions for isotopically substituted
+molecules are typically extremely accurate. However, when considering isotopic ratios, the range of realistic values is quite limited; therefore, a small prediction error is very notable. For example, deuterated acetaldehyde in IRAS 16293B is observed to have
+a D/H ratio of 7.98%. A column density under-prediction by 0.3
+orders of magnitude would result in a predicted ratio of approximately 4.00%. This ratio suggests very different temperatures
+and timescales of formation.
+There are a few molecules for which the ratio prediction is especially inaccurate. These species are labelled on Figure 4. The
+prediction errors of HDCS and CH2 DOCHO are especially notable
+since they highlight the shortcomings of using hand-picked descriptors. When encoding the chemical environment of the deuterium substitution, vector dimensions are included that denote
+whether there is a carbon or oxygen atom two bonds away from
+the deuterium atom. However, there was no consideration of
+whether the atom in this position is sulfur since HDCS is the only
+molecule in the dataset in which this is the case. Therefore, this
+important chemical environment information is not provided to
+the model, thus leading to a large prediction error. Additionally, with simple hand-picked features, the model isn’t always
+able to capture the nuances of isotopic fractionation. For example, the isotopic encoding of CH2 DOCHO is very similar to that
+of CH2 DOH. Because CH2 DOH has a D/H ratio of only around
+7%, the model inaccurately predicts CH2 DOCHO to have approximately the same ratio.
+Preferably we could include a more nuanced encoding of isotopic composition that better captures the local chemical environment instead of simple hand-picked features. However, with
+only 27 deuterated molecules and 15 13 C substituted species, the
+dataset of unique isotopologues is too small to learn the required
+relationships with a complex featurization. As mentioned previously,
+M OL 2 VEC is sensitive to some, but not all, isotopic substitutions.
+It can, however, create unique vectors for deuterated
+species. Therefore, we tested the ability to learn deuterium ratios
+from the original M OL 2 VEC-produced vectors that more fully
+consider chemical context. These results are shown in Figure 5.
+The D/H ratio of formic acid is omitted from the graph since a
+ratio of around 6 is predicted which skews the ability to view
+the remaining points. As can be seen, these predictions are far
+less accurate than when hand-picked features were used. This
+is because the vector representations of many of the deuterated
+species are quite dissimilar to the main isotopologue in this case.
+In fact, the vector representation of CH2 DCH2 OH is closer to that
+of propanal than that of CH3 CH2 OH. In order to include more
+detailed isotopic information in the feature vectors and thus
+accurately model isotopic fractionation, it is clear that we require
+additional isotopologue detections.
+Finally, in order to test the predictive ability of the model on
+isotopologues for which no column density has been derived, we
+proceeded to predict the 12 C/13 C ratio of CO and CN with the
+
+trained GPR model from Section 4.1. For these two molecules
+(along with H2 CO), a linear 12 C/13 C trend has been defined as a
+function of Galactocentric distance (DGC ). The formulae of these
+Galactocentric gradients are displayed in Equations 1, 2, and 3
+
+H2 12CO/H2 13CO = (7.60±1.79)kpc-1 ×DGC +(18.05±10.88) (3)
+Using a Galactocentric distance of 8.043 kpc for IRAS 16293,
+the range of expected ratios along with the ratios predicted by
+the GPR model are shown in Table 2. For reference, the observed
+12 C/13 C ratio of H CO is listed as well 21 . The Galactocentric
+2
+distance of IRAS 16293 was computed using the ASTROPY Python
+module 61 . The values used in this calculation were the distances
+from the Earth to both the Galactic Center and IRAS 16293 (8.178
+kpc and 141 pc 62,63 ) as well as their respective sky coordinates.
+The observed
+
+
+16293B is very near the lower bound of the Galactocentric trend
+error bars at 8.043 kpc. Interestingly, the GPR model predicts the
+CO and CN ratios to also be fairly near the lower bounds of the
+respective ratio gradients. This matches the observed trends of
+various other molecules in IRAS 16293B, which typically show
+high levels of 13 C substitution. A high abundance of 13 CO could
+stem from favorable ion-neutral isotope exchange reactions in the
+cold interstellar gas before CO freeze-out 64 . Complex organic
+species that were then formed on grain surfaces from CO following
+freeze-out would inherit this small 12 C/13 C ratio. The 13 C
+enhancement in organic molecules would be even more notable
+at later timescales since laboratory experiments have shown that
+12CO desorbs slightly more efficiently than 13CO 65 . This enables
+12CO to sublimate from the grain at a lower temperature. Therefore,
+as the protostar begins to heat the surroundings to around
+the CO sublimation temperature, the more efficient 12CO sublimation
+would result in grain surfaces that are further enhanced
+with 13CO.
+Overall, while the machine learning regressor is not precise
+enough to adequately model the exact isotopic ratios, the 13 CO
+and 13 CN predictions show that it still is able to learn the general
+overabundance of 13 C in the organic species of IRAS 16293B.
+
+4.4
+
+Isotopologue targets for astrochemical study
+
+As noted in Section 1, because of the extreme isotopic fractionatio
+in this source, multiple groups have predicted that a significant portion of the unidentified spectral peaks in the line survey arise from isotopically substituted species 15,16 . Additionally, Figure 4 shows that the GPR regressor is able to precisely
+model column densities of the isotopically substituted molecules.
+Therefore, using the trained GPR model we proceeded to predict
+the column densities of the D and 13 C mono-substituted isotopologues
+of the previously identified molecules in IRAS 16293B for
+which no accurate column density has been derived. Due to the
+inaccurate predictions of the main isotopologues of ethylene glycol,
+chloromethane and dimethyl ether, the predictions of the rare
+isotopologues of these species were omitted. The highest 10 predicted
+column density isotopologues are displayed in Figure 6. All
+predictions are provided in the associated GitHub repository.
+Of these highest 10 predicted column density species, both
+13 C-substituted ethanol isotopologues and OD substituted ethanol
+were marginally detected toward IRAS 16293B. While we did not
+include these molecules in our training set, Jørgensen et al. 18
+derived tentative column densities for these species.
+These tentatively derived column densities along with the values predicted
+
+isotopically substituted species can be achieved by combining experimental data and ab initio calculations. In this process, the
+experimental rotational and distortion constants of the main isotopologue are first collected. The A, B, and C rotational constants of the parent species are then calculated at a given level
+of theory and basis set. For our work, we ran the calculations
+with the PSI4 69 Python package and used the M06-2X functional
+with the 6-311++G(d,p) basis set. Assuming that the geometry
+remains constant upon isotopic substitution, the same computational methods are then used to calculate rotational constants of
+the rare isotopologues. Finally, it is assumed that the scaling factor between the experimental and calculated rotational constants
+is the same for the main isotopologues and the isotopically substituted molecules. For example, the B rotational constant of the
+isotopically substituted species can be calculated using Equation
+
+The experimental distortion constants and dipole moments of
+the main isotopologues were used as-is for the isotopically substituted molecules.
+Fig. 6 The 10 undetected rare isotopologues of the molecules identified in IRAS 16293B with the highest predicted column densities. The
+trained Gaussian process regression model was used for the predictions.
+1σ column density uncertainties are shown.
+
+by the GPR model are listed in Table 3. As can be seen, all predictions closely match the tentative column densities. Additionally, while transitions corresponding to 13 CH3 OH and DCN have
+been identified toward IRAS 16293, no derived column density is
+listed 66 .
+Therefore, the remaining molecules of interest are the three
+deuterated isotopologues of methoxymethanol along with the
+13 C isotopologue of methyl formate.
+Beyond these largest
+10 predicted column density isotopologues, another high predicted abundance isotopologue is the deuterated isotopologue
+of methoxyethane (CH3 CH2 OCH2 D). As mentioned previously,
+while large column densities are beneficial for detection, various other factors impact the detectability of a molecule. For all
+of these molecules, we therefore simulated their spectra toward
+IRAS 16293B using the predicted column densities in order to assess their true detectability. The microwave and sub-mm spectra
+of 13 CH3 OCHO have been experimentally studied and assigned,
+thus making interstellar detection currently possible. In fact, this
+rare isotopologue was detected in the Orion molecular cloud 67 .
+However, this particular isotopologue is not present in the CDMS
+molecular spectroscopy database 68 . All of the other aforementioned deuterated isotopologues have not been studied experimentally.
+In order to simulate the spectra of these previously unstudied
+isotopologues, the rotational constants must first be calculated.
+A low-cost method to obtain molecular rotational constants for
+our
+
+
+Following the rotational constant calculations, a rotational line
+catalog was generated using Pickett’s SPCAT 70 . Only the A, B,
+and C rotational constants and distortion constants (when available) were used.
+Internal rotational was not considered during
+the catalog simulations. The molsim 71 Python package was then
+used to simulate the spectra of the isotopologues toward IRAS
+16293B with the predicted column densities. molsim assumes
+that the molecular emission can be described by a single excitation temperature,
+and accounts for the effects of optical depth.
+For the simulations, the excitation temperature and vlsr of the
+main isotopologue were used. A source size of 0.500 , beam diameter of 0.500 ,
+and line width of 1.0 km/s were used for each
+simulation.
+Since ALMA Band 7 (329.147-362.896 GHz) is fully covered
+with the PILS observations, this frequency range is the predominant focus
+of our spectral simulations. Given the noise level
+of the PILS observations 15 , any transition with a peak intensity
+stronger than ∼21 mJy/beam should be detectable at a 3σ significance.
+Analysis of the spectral simulations can be seen in Table
+4. The simulated spectra of the 13 C-substituted methyl formate
+isotopologue and the deuterated methoxyethane isotopologue toward IRAS 16293B
+are presented in Figure 7.
+Despite having higher predicted column densities, the rare
+isotopologues of methoxymethanol are predicted to have much
+weaker spectral peaks than the other isotopologues considered
+due to the limited dipole moment. That said, with several transitions predicted 
+to be stronger than 3σ , CH3 CH2 OCH2 D is an
+excellent candidate for experimental study for astrochemical purposes.
+Additionally, since the spectrum of 13 CH3 OCHO has already been collected and
+assigned, we recommend that this
+molecule be searched for in the PILS data.
+
+Fig. 7 Simulated spectra of CH3 CH2 OCH2 D and 13 CH3 OCHO toward IRAS 16293B. The column densities used for the simulations were 3.98 × 1015
+cm−2 for CH3 CH2 OCH2 D and 6.80 × 1015 cm−2 for 13 CH3 OCHO. These values were predicted by the trained Gaussian process regression model.
+The red line denotes the approximate RMS noise level of the PILS observations in ALMA Band 7. The blue line denotes the intensity required for a
+transition to have 3σ significance. Other simulation parameters are noted in the text.
+Table 4 Analysis of the simulated spectra of the three deuterated isotopologues of methoxymethanol, 13 C substituted methyl formate, and deuterated
+methoxyethane. The spectral line catalogs were produced using SPCAT and the spectra were simulated with the MOLSIM Python module. The
+simulations span ALMA Band 7 (329.147 - 362.896 GHz). 1σ transitions have intensities of 7 mJy/beam and 3σ transitions have intensities of 21
+mJy/beam.
+
+# of 3σ Transitions
+
+# of 1σ Transitions
+
+Intensity of Strongest Transition (mJy/beam)
+
+Conclusions
+
+In this work, we applied the machine learning pipeline introduced
+by Lee et al. 11 to source B of the binary Class 0 protostar IRAS
+16293-2422. In order to include isotopologues in the dataset,
+we also concatenated a simple encoding of the isotopic composition
+to the feature vectors. Gaussian process regression and
+Bayesian ridge regression were both able to accurately model the
+column densities of the detected molecules in this source. The
+trained Gaussian process regression model then provided a list
+
+of 242 well-constrained targets for astrochemical study. Small,
+oxygenated, and fairly saturated hydrocarbons were predicted to
+be in high abundance in this protostellar source.
+While the column density predictions of isotopologues were quite precise, the
+nuances of isotopic ratios were only modeled with moderate accuracy.
+Additional isotopologue detections will be required to allow
+for a more complex encoding of isotopic substitution that better
+captures local chemical environment. Finally, since it has been
+predicted that many of the unassigned transitions in the PILS survey
+arise from isotopically substituted molecules, we provided a
+list of 92 isotopologue column density predictions.
+This machine learning method has now been shown to effectively model
+the molecular column densities in two separate interstellar sources
+and the resulting trained regression models can
+be used to predict molecular species that are likely abundant in
+these various regions of interstellar space. However, these same
+techniques can be readily applied to terrestrial chemical mixture
+identifications as well. For example, if a researcher is able to
+reliably identify a fairly small number of chemical components
+present in an environmental sample along with their abundances,
+these supervised regressors could be trained and used to predict
+other components and contaminants of that mixture.
+
+Author Contributions
+Zachary Fried: Software, Formal analysis, Investigation, Data
+Curation, Writing - Original Draft, Visualization. Kelvin Lee:
+Methodology, Supervision, Writing - Review & Editing. Alex
+Byrne: Software, Writing - Review & Editing. Brett McGuire:
+Supervision, Writing - Review & Editing, Funding acquisition.
+
+Conflicts of interest
+There are no conflicts to declare.
+
+Acknowledgements
+The authors thank C. W. Coley for providing helpful insight regarding the M OL 2 VEC molecular featurization and the inclusion
+of isotopic information in Morgan fingerprints.
+The National Radio Astronomy Observatory is a facility of the
+National Science Foundation operated under cooperative agreement by Associated Universities, Inc.

@@ -22,7 +22,7 @@ def extract_keywords(text: UdcPredictorTextInput, top_k=50):
         is_valid = all(not token.is_stop for token in chunk if token.is_alpha)
         if is_valid:
             # Remove punctuation marks from the chunk
-            chunk_text = '' \
+            chunk_text = ' ' \
                 .join(token.text for token in chunk if not token.is_punct) \
                 .strip() \
                 .lower()
