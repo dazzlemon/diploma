@@ -1,10 +1,34 @@
 """UDC classes predictor for scientific works in english"""
+from collections import Counter
 import pprint
 from pathlib import Path
+import spacy
 from parse_args import parse_args
 
 UdcPredictorTextInput = str
 UdcPredictorModel = str
+
+
+def extract_keywords(text: UdcPredictorTextInput, top_k=50):
+    """
+    Extract keywords from text (scientific work)
+    """
+    nlp = spacy.load("en_core_web_lg")
+    doc = nlp(text)
+    keywords = []
+
+    noun_chunks = []
+    for chunk in doc.noun_chunks:
+        is_valid = all(not token.is_stop for token in chunk if token.is_alpha)
+        if is_valid:
+            noun_chunks.append(chunk.text.lower())
+
+    keyword_counts = Counter(noun_chunks)
+    sorted_keywords = keyword_counts.most_common(top_k)
+    keywords = [keyword for keyword, count in sorted_keywords]
+
+    return keywords
+
 
 def read_model(filename: str) -> UdcPredictorModel:
     """
@@ -26,13 +50,19 @@ def read_text(filename: str) -> UdcPredictorTextInput:
     return Path(filename).read_text()
 
 
-if __name__ == '__main__':
+def main():
+    """main duh"""
     mode = parse_args()
-    pp = pprint.PrettyPrinter(indent=4)
-    pp.pprint(mode)
+
+    pretty_printer = pprint.PrettyPrinter(indent=4)
+    pretty_printer.pprint(mode)
 
     model = read_model(mode.model_filename)
     text = read_text(mode.text_filename)
 
-    print(f'{model=}')
-    print(f'{text=}')
+    for w in extract_keywords(text):
+        print(w)
+
+
+if __name__ == '__main__':
+    main()
