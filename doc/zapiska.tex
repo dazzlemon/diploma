@@ -364,23 +364,23 @@
   \subsection{Зовнішнє проєктування}
 
   Розробнику потрібна можливість тренувати модель.
-  Користувачу --- отримувати припущення від натренованої моделі,
+  Користувачу --- отримувати припущення від натренованої моделі припущень,
   та опціонально порівнювати це припущення із припущенням користувача.
   \begin{enumerate}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
-    \item Тренування моделі:
+    \item Тренування моделі припущень:
       \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
         \item вхід:
           \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
-            \item модель,
+            \item модель припущень,
             \item текст;
           \end{itemize}
-        \item вихід --- нова модель.
+        \item вихід --- нова модель припущень.
       \end{itemize}
     \item Отримання припущень від моделі:
       \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
         \item вхід:
           \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
-            \item модель,
+            \item модель припущень,
             \item текст;
           \end{itemize}
         \item вихід --- список класів.
@@ -389,7 +389,7 @@
       \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
         \item вхід:
           \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
-            \item модель,
+            \item модель припущень,
             \item текст,
             \item список класів УДК;
           \end{itemize}
@@ -400,6 +400,9 @@
           \end{itemize}
       \end{itemize}
   \end{enumerate}
+
+  Розглянуті сценарії можна формалізувати у наступній use-case діаграмі
+  (рис. \ref{fig:use-case}).
 
   \begin{figure}[H]
     \centering
