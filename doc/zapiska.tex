@@ -3,7 +3,6 @@
 \usepackage[ukrainian]{babel}
 \usepackage[contents=TODO, color=gray, pages=some]{background}
 \usepackage[a4paper, left=20mm, top=20mm, right=10mm, bottom=20mm]{geometry}
-\usepackage{lipsum}
 \usepackage{indentfirst}
 \usepackage{titlesec}
 \usepackage{stringstrings}
@@ -17,6 +16,23 @@
 \usepackage[style=numeric, sorting=none]{biblatex}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{caption}
+\usepackage{listings}
+\usepackage{rotating}
+
+\lstnewenvironment{mycode}[1][]{
+  \lstset{
+    basicstyle=\small\ttfamily,
+    captionpos=b,
+    #1
+  }
+}{}
+
+\DeclareCaptionLabelFormat{dstuFigLabel}{Рисунок #2}
+\DeclareCaptionLabelSeparator{abobasep}{ --- }
+\captionsetup[figure]{labelformat = dstuFigLabel
+                     ,labelsep    = abobasep
+                     }
 
 \addbibresource{zapiska.bib}
 
@@ -133,21 +149,6 @@
   Тому ця робота має на меті розробити надійний
   та ефективний автоматизований інструмент для вибору
   та перевірки УДК шифрів НР.
-
-  % TODO: move this part to some other chapter
-  \section*{TODO: move to other section}
-  \BgThispage
-  Перевірка може бути виконана у два кроки:
-  \begin{enumerate}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
-    \item Переклад
-    \item Порівняння наданого шифру із перекладом.
-  \end{enumerate}
-
-  Переклад у свою чергу вимагає попереднього стискання
-  вихідного тексту для виключення надмірностей.
-  Через розміри та семантику шифрів,
-  стисненний результат має представляти собою дуже короткий (декілька речень)
-  текст, який перераховує теми оригінального тексту та їх співвідношення.
 
   % ommited because it's only used for groupping
   % основний текст кваліфікаційного проєкту (роботи):
@@ -305,59 +306,103 @@
   Також за бажанням ПЗ може бути відредагованим
   у майбутньому щоб використовувати платну версію.
 
-  \subsection{Постановка задачі}
-  \lipsum[1-3]
+  \subsection{Огляд аналогів}
+  Широкодоступних аналогів, які б повністю відтворювали функціонал ---
+  підбір кодів (або в нашому випадку класів) УДК та їх порівняння/перевірка,
+  не знайдено. Під широким доступом маются на увазі комерційні
+  або відкриті/безкоштовні рішення.
+
+  Втім, існують наукові роботи із схожою метою:
+  \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+    \item "Automatic classification of older electronic texts into the UDC"
+      \cite{kragelj_automatic_udc_classification}
+      --- Ця робота ставить своєю метою розробити модель для
+      класифікації старих оцифрованих текстів.
+    
+    \item "Service for assigning a UDC code
+	    to mathematical articles based on semantic technologies"
+      \cite{almukhametov_udc_code_for_math_articles} --- 
+      Ця робота ставить своєю метою розробити модель
+      для класифікації математичних статей.
+    
+    \item "A Hybrid Approach to Recommending
+      Universal Decimal Classification Codes
+      for Cataloguing in Slovenian Digital Libraries"
+      \cite{borovic_hybrid_udc_recommendation} ---
+      Ця робота ставить своєю метою розробити додаток,
+      який буде пропонувати бібліотекарям УДК шифри,
+      тим самим значно спрощуючи їх роботу.
+
+    \item "Automated Subject Identification using the
+      Universal Decimal Classification: The ANN Approach"
+      \cite{roy_ann_approach} ---
+      Ця робота ставить своєю метою розробити додаток,
+      який буде пропонувати бібліотекарям УДК шифри,
+      тим самим значно спрощуючи їх роботу.
+
+    \item "Porter advanced method for the Universal Decimal Classification"
+      \cite{tretyakov_porter} --- 
+      Ця робота ставить своєю метою розробити додаток,
+      який буде пропонувати бібліотекарям УДК шифри,
+      тим самим значно спрощуючи їх роботу.
+
+  \end{itemize}
+
   \subsection{Висновки}
-  \BgThispage
-  \lipsum[1-3]
-  \BgThispage
+
+  Була розглянута система УДК - задача,
+  яку ця робота намагаєтся вирішити/спростити,
+  є трудомісткою та займає час.
+  Через це доцільне створення інструмента,
+  який буде хочаб частково автоматизувати цю задачу.
+
+  Широкодоступні аналоги зовсім відсутні,
+  наукові роботи із схожою метою в більшості розглядают лише часткові рішення
+  --- вони орієнтуются на деяку підмножину НР.
 
   \section{ПРОЄКТУВАННЯ}
   \subsection{Зовнішнє проєктування}
 
   Розробнику потрібна можливість тренувати модель.
-  Користувачу --- отримувати припущення від натренованої моделі,
+  Користувачу --- отримувати припущення від натренованої моделі припущень,
   та опціонально порівнювати це припущення із припущенням користувача.
   \begin{enumerate}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
-    \item Тренування моделі
+    \item Тренування моделі припущень:
       \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
-        \item вхід
+        \item вхід:
           \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
-            \item модель
-            \item текст
+            \item модель припущень,
+            \item текст;
           \end{itemize}
-        \item вихід
-          \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
-            \item нова модель
-          \end{itemize}
+        \item вихід --- нова модель припущень.
       \end{itemize}
-    \item Отримання припущень від моделі
+    \item Отримання припущень від моделі:
       \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
-        \item вхід
+        \item вхід:
           \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
-            \item модель
-            \item текст
+            \item модель припущень,
+            \item текст;
           \end{itemize}
-        \item вихід
-          \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
-            \item список класів
-          \end{itemize}
+        \item вихід --- список класів.
       \end{itemize}
-    \item Отримання припущень від моделі та порівняння із наданим шифром УДК
+    \item Отримання припущень від моделі та порівняння із наданим шифром УДК:
       \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
-        \item вхід
+        \item вхід:
           \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
-            \item модель
-            \item текст
-            \item список класів
+            \item модель припущень,
+            \item текст,
+            \item список класів УДК;
           \end{itemize}
-        \item вихід
+        \item вихід:
           \begin{itemize}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
-            \item список класів
-            \item ступінь відповідності класів
+            \item список класів,
+            \item ступінь відповідності класів.
           \end{itemize}
       \end{itemize}
   \end{enumerate}
+
+  Розглянуті сценарії можна формалізувати у наступній use-case діаграмі
+  (рис. \ref{fig:use-case}).
 
   \begin{figure}[H]
     \centering
@@ -385,7 +430,195 @@
   \end{itemize}
 
   \subsection{Проєктування архітектури системи}
-  \subsubsection{Вибір засобів програмування}
+  Програму розроблено ітераціями. На кожну з ітерацій виділено окрему секцію. Є два типи ітерацій:
+  \begin{enumerate}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+    \item Реалізація нового функціоналу,
+    \item Вдосконалення старого функціоналу.
+  \end{enumerate}
+  \subsubsection{Інтерфейс користувача}
+  Для простоти тестування було вирішено почати розробку з інтерфейсу користувача.
+  З попередніх секцій знаємо що це буде інтерфейс командного рядка.
+
+  Найпростішим варіантом
+  є перевірка аргументів командного рядка у функції main,
+  і після цього виклик із цими аргументами внутрішньої реалізації.
+
+  UML-діаграма для такої моделі виглядає наступним чином
+  (Рис. \ref{fig:io_uml1}).
+  Справжня реалізація буде мати складніший інтерфейс,
+  але ця секція фокусуєтся на розробці користувацького інтерфейсу,
+  тому на цьому єтапі реалізація представлена як дуже простий клас.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics{io_uml1.drawio.png}    
+    \caption{UML-діаграма 1}
+    \label{fig:io_uml1}
+  \end{figure}
+
+  Алє таке рішення не є оптимальним ---
+  заради простоти початкової реалізації
+  втрачаєтся легкість подальшої заміні інтерфейсу.
+  Тому доцільно виділити модуль який буде відповідати
+  за взаємодію з користувачем.
+  В нашому випадку це буде зчитування аргументів командного рядку,
+  але за потреби він може бути замінений на графічний або веб-інтерфейс, тощо.
+  Тепер діаграма виглядає так (Рис. \ref{fig:io_uml2}).
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics{io_uml2.drawio.png}    
+    \caption{UML-діаграма 2}
+    \label{fig:io_uml2}
+  \end{figure}
+
+  Тепер перед тим як викликати внутрішню реалізацію,
+  main викликає клас UDCArgParser,
+  який у свою чергу опрацьовує аргументи командного рядку.
+  
+  Хоча ця реалізація вирішує проблему відповідальності, вона додає декілька нових:
+  \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+    \item по-перше UDCArgParser зчитує аргументи комадного рядка
+    у конструкторі із глобальних змінних,
+    це порушує принцип Dependency Inversion\cite{DI_wiki, SOLID_wiki};
+    \item по-друге змінні is\_training\_mode, is\_udc\_comparison\_mode та \\ is\_prediction\_mode є взаємовиключними.
+  \end{itemize}
+
+  Для вирішення другої проблеми, потрібно скористатися поліморфізмом
+  \cite{Polymorphism_wiki, Subtyping_wiki, Dynamic_dispatch_wiki}
+  і замінити ці три змінні на одну,
+  яка буде приймати значення одного з трьох підкласів.
+  Іншими словами, треба заміни три взаємовиключні булеві змінні
+  на одну змінну типу перечислення.
+  З цими змінами UML-діаграма виглядає наступним чином (Рис. \ref{fig:io_uml3}).
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{io_uml3.drawio.png}    
+    \caption{UML-діаграма 3}
+    \label{fig:io_uml3}
+  \end{figure}
+  
+  Тепер клас Mode та його підкласи відповідають за представлення режиму,
+  алє клас UDCArgParser має змінні new\_model\_filename та udc\_code,
+  які в залежності від значення Mode завжди будуть NULL,
+  тому доцільно перенести усі значення до підкласів Mode,
+  перетворюючи тим самим це перечислення на алгебраічний тип данних
+  \cite{ADT_wiki}.
+  
+  Доцільно помітити що алгебраічні типи даних відсутні в ООП та мові Python,
+  тому вони будуть ємульовані з допомогою наслідування
+  \cite{Code_complete_34_4, ADT_composition_over_inheritance}.
+  
+  Таким чином UDCArgParser дійсно буде мати тільки одну відповідальність ---
+  перетворення аргументів командного рядка на об'єкт Mode.
+  А Mode у свою чергу відповідає за представлення даних,
+  які будуть надані внутрішній реалізації.
+  Після цих змін UML-діаграма буде виглядати так (Рис. \ref{fig:io_uml4}).
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{io_uml4.drawio.png}    
+    \caption{UML-діаграма 4}
+    \label{fig:io_uml4}
+  \end{figure}
+  
+  Нова версія набагато краще попередніх, особливо першої.
+  Втім все ще є недоліки:
+  \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+    \item тип Mode містить поля model\_filename та text\_filename
+    --- вони будуть передані в Backend
+    (це не показано на діаграмах, тому теж є недоліком).
+    Внутрішній реалізації потрібен вміст цих файлів,
+    насправді внутрішня реалізація навіть не повинна знати що це вміст файлів,
+    а не, наприклад, вміст текстового поля у графічному інтерфейсі, тощо.
+    Тому доцільно:
+      \begin{enumerate}[labelindent=\dimexpr\parindent\relax, leftmargin=*]
+        \item Прибрати слово filename з обох полів,
+        \item Виділити типи для цих значень ---
+        таким чином ми зможемо робити майбутні зміни лише в одному місці
+        % TODO: code complete ref (central control points or smth)
+      \end{enumerate}
+    \item Також присутня змінна new\_model\_filename в UDCComparisonMode ---
+    вона так само не є важливою дла внутрішньої реалізації,
+    а тільки для інтерфейсу користувача.
+    Через те що для внутрішньої реалізації це буде одним з результатів
+    (також можуть бути припущення щодо класів УДК та точності припущення,
+    зробленного користувачем),
+    це потрібно формалізувати в інтерфейсі класу Backend.
+    \item Крім того, з попереднього пункту видно
+    що потрібно формалізувати тип результату виконання внутрішньої реалізації.
+    Втім, через те що маєтся чітка відовідність між підкласами Mode
+    та типом (типами) результата внутрішньої реалізації доцільно розділити
+    ці дії (режими роботи додатку) на окремі методи в класах Main та Backend.
+  \end{itemize}
+
+  У новій діаграмі (рис. \ref{fig:io_uml5})
+  виділено типи UdcPredictorModel та UdcPredictorInput-Text,
+  також явно показано залежність внутрішньої реалізації від типу Mode.
+
+  UDCArgParser тепер має відповідальність
+  за зчитування файлів за наданими іменами,
+  але саме зчитування оброблюєтся внутрішньою бібліотекою мови Python,
+  тому це не є порушення принципу єдиної відповідальності \cite{SRP_wiki}.
+  Ця залежність не показана на діаграмі тому що вона подразумеваєтся/implied
+  (я не знаю как перевести єто слово, googletranslate предлагает вообще не то)
+  як атомарний функціонал мови, як і багато інших дещо простіших речей.
+
+  Для вирішення інших проблем, описаних в попередній ітерації,
+  краще розпочати з конкретизації внутрішньої реалізації.
+  Через те що кожному з вхідних підтипів Mode буде відповідати новий формат
+  результату, доцільно розділити метод resolve, на три різні.
+  Крім того, ми можемо позбавитися залежності між
+  внутрішньою реалізацією та типом Mode ---
+  методи можуть приймати декілька параметрів,
+  щодо результатів, функції в мові Python (та інших сучасних)
+  можна повертати декілька значень
+  <TODO: add refs to tuple/anonymous types/records>.
+
+  \begin{sidewaysfigure}[htbp]
+    \centering
+    \includegraphics[height=0.6\textwidth]{io_uml5.drawio.png}    
+    \caption{UML-діаграма 5}
+    \label{fig:io_uml5}
+  \end{sidewaysfigure}
+
+  Через ці зміни, доцільно частково відмінити попередню зміну ---
+  тип Mode буде мати імена файлів, а клас Main буде зчитувати та записувати їх.
+  Це рішення є покращенням через те що тип
+  UDCComparisonMode все ще має ім'я файлу,
+  насправді його можна було б замінити на дескріптор файлу,
+  алє тоді отримання ресурсу (файлу),
+  та його звільнення (закриття) відбувалося б у різних методах та класах ---
+  це порушує RAII <TODO: ref>.
+  Крім того, на даний момент клас Main не мав явної відповідальності
+  (крім посередництва між іншими класами),
+  тому ми можемо додати цю роботу до цього модуля.
+  Також внутрішня реалізація буде напряму залежати
+  від типів UdcPredictorTextInput та UdcPredictorModel.
+
+  Нова версія (рис. \ref{fig:io_uml6}) вирішує вище описані проблеми
+  наступним чином:
+  \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+    \item внутрішня реалізація тепер має два методи ---
+    припущення та тренування,
+    вони напряму залежать від типів UdcPredictorModel та \\ UdcPredictorInputText.
+    \item тип/клас/модуль UdcCode відподідає за представлення шифрів УДК
+    та їх порівняння,
+    модуль Main перетворює рядок отриманий від UdcArgParser на цей тип.
+    \item усі взаємодії із файлами відбуваются у класі Main.
+  \end{itemize}
+
+  \begin{sidewaysfigure}[htbp]
+    \centering
+    \includegraphics[height=0.45\textwidth]{io_uml6.drawio.png}    
+    \caption{UML-діаграма 6}
+    \label{fig:io_uml6}
+  \end{sidewaysfigure}
+
+  \newpage
+
+  \subsection{Вибір засобів програмування}
   Для реалізації даного ПЗ було обрано мову Python,
   як найпопулярнішу в даному напрямі.
   Для вирішення задачі отримання ключових слів для заданого тексту
@@ -447,11 +680,102 @@
     \item швидше за інші бібліотеки
   \end{itemize}
 
+  \subsection{Перетворення ключових слів на класи УДК}
+  В наведених у попередніх розділах відкритих каталогах УДК
+  кількість ключових слів для кожного з підкласів дуже мала
+  (близько 10 на кожен підклас), тому буде згенеровано свій каталог.
+  Алгоритм створення наступний:
+  \begin{enumerate}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+    \item Беремо ключові слова з існуючої роботи (ті які надав автор),
+    \item Витягуємо ключові слова з тексту з допомогою обраного алгоритму,
+    \item Порівнюємо ключові слова з п.1 та п.2 та додаємо до каталогу ті,
+    які входять до обох списків.
+  \end{enumerate}
+
+  Точність такого підходу буде напряму залежати від кількості розглянутих робіт
+  та кількості отриманих ключових слів.
+  Через обмежений час такі каталоги будуть створені не для усіх підкласів,
+  та деякі класи будуть мати меншу вибірку.
+
   \subsection{Висновки}
 
   \section{РОЗРОБКА ПРОГРАМИ}
+  \subsection{Розробка інтерфейсу користувача}
+  Для простоти виконання буде використано інтерфейс командного рядка (CLI). 
+  Для цієї задачі в мові python є спеціалізований модуль argparse.
+
+  З розробленої use-case діаграми можна сказати шо є два режими роботи
+  (стільки  ж скільки й акторів).
+  Через те що режими тільки два, доцільно використати прапор.
+  Основним сценарієм є припущення,
+  тому прапор буде використовуватися для тренування "\-\-training".
+  
+  Модель та текст присутні на вході кожного випадку,
+  тому їх можна зробити позиційними аргументами.
+  
+  Список класів є тільки в одному випадку,
+  тому це буде опціональним аргументом,
+  який буде прийматися тільки якщо відсутній прапор "\-\-training",
+  цей аргумент буде помічатись як "\-\-udc".
+  Для припущення результат буде надаватися в stdout у наступному форматі:
+  список класів та ступінь їх відповідності, якщо використано "\-\-udc".
+  
+  Маємо такі сценарії використання:
+  \begin{enumerate}
+    \item Тренування моделі
+      \begin{mycode}[caption={Тренування моделі}, label={code:training_ex}]
+        $ udc-classifier \
+            model.model \
+            scientific-work.txt \
+            --training updated-model.model
+      \end{mycode}
+      \begin{itemize}
+        \item udc-classifier --- назва виконуваного файлу
+        \item model.model --- назва файлу існуючої моделі
+        \item scientific-work.txt --- назва файлу з текстом наукової роботи
+        \item updated-model.model --- назва файлу, до якого буде записано нову модель
+      \end{itemize}
+    
+    \item Отримання припущення
+      \begin{mycode}[caption={Отримання припущення}, label={code:result_prompt_ex}]
+        $ udc-classifier model.model scientific-work.txt
+      \end{mycode}
+      \begin{mycode}[caption={Припущення (класи, які можуть підійти до наданого тексту)}
+                    , label={code:result_ex}]
+        539.120 94 084.3
+      \end{mycode}
+      \begin{itemize}
+        \item udc-classifier --- назва виконуваного файлу
+        \item model.model --- назва файлу існуючої моделі
+        \item scientific-work.txt --- назва файлу з текстом наукової роботи
+      \end{itemize}
+
+    \item Отримання припущення та порівняння класів
+      \begin{mycode}[caption={Отримання припущення та порівняння класів}, label={code:result_prompt_ex2}]
+        $ udc-classifier \
+            model.model \
+            scientific-work.txt \
+            --udc ‘913(574.22)"19"(084.3)’
+      \end{mycode}
+      \begin{mycode}[caption={Припущення}
+                    , label={code:result_ex2}]
+        539.120 94 084.3
+        0.3
+      \end{mycode}
+      \begin{itemize}
+        \item udc-classifier --- назва виконуваного файлу
+        \item model.model --- назва файлу існуючої моделі
+        \item scientific-work.txt --- назва файлу з текстом наукової роботи
+        \item третій рядок прикладу ---
+        класи, які можуть підійти до наданого тексту
+        \item другий рядок --- вхідний шифр УДК
+        \item четвертий рядок --- ступінь відповідності класів
+        (від 0 до 1, де 0 --- відсутні співпадіння, 1 --- повне співпадіння)
+      \end{itemize}
+  \end{enumerate}
+
+
   \subsection{Висновки}
-  \BgThispage
 
   \section{ТЕСТУВАННЯ ТА НАЛАГОДЖЕННЯ}
   \subsection{Висновки}
