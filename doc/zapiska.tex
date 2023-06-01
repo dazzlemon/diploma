@@ -631,12 +631,12 @@
   або готовий алгоритм виділення ключових слів.
   Знайдено такі бібліотеки зі схожим функціоналом:
   \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
-    \item RAKE (Rapid Automatic Keyword Extraction)
-    \item YAKE (Yet Another Keyword Extractor)
-    \item SpaCy
-    \item NLTK (Natural Language Toolkit)
-    \item TextBlob
-    \item Gensim
+    \item RAKE (Rapid Automatic Keyword Extraction) \cite{rake_nltk}
+    \item YAKE (Yet Another Keyword Extractor) \cite{pypi_yake}
+    \item spaCy \cite{spaCy}
+    \item NLTK (Natural Language Toolkit) \cite{nltk}
+    \item TextBlob \cite{TextBlob}
+    \item Gensim \cite{gensim}
   \end{itemize}
 
   YAKE потребує тренування на конкретному наборі даних ---
@@ -647,12 +647,12 @@
   Це бібліотеки загального призначення,
   але їх можна відкинути з наступних причин:
   \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
-    \item вони програють SpaCy за швидкістю
-    \item SpaCy має кращі моделі
-    \item SpaCy має більш просунуті функції
+    \item вони програють spaCy за швидкістю
+    \item spaCy має кращі моделі
+    \item spaCy має більш просунуті функції
   \end{itemize}
 
-  Хоча SpaCy не має готового алгоритму витягування ключових слів,
+  Хоча spaCy не має готового алгоритму витягування ключових слів,
   його дуже легко реалізувати.
 
   Алгоритм, який використовує RAKE працює наступним чином ---
@@ -660,7 +660,7 @@
   та ступінь їх появи з іншими,
   слова сортуються за обома критеріями з попереднього кроку.
 
-  SpaCy не надає готово алгоритму виділення ключових слів,
+  spaCy не надає готово алгоритму виділення ключових слів,
   але дає можливість розбити текст на слова, розмічати їх як частини мови,
   розпізнати іменовані сутності.
 
@@ -672,7 +672,7 @@
   для реалізації витягування ключових слів,
   а ті які є в цій бібліотеці були розроблені, в першу чергу,
   для інших цілей і не є оптимальними для нашої задачі.
-  З цього виходить що SpaCy є найкращим вибором:
+  З цього виходить що spaCy є найкращим вибором:
   \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
     \item має весь потрібний функціонал;
     \item має моделі;
