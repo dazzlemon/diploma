@@ -893,8 +893,45 @@
   алє набагато легше буде використовувати цільові ОС для створення
   виконуваних файлів. Для цього доцільно використати PyInstaller.
 
+  Для створення виконуваного файлу потрібно виконати такі кроки:
+  \begin{enumerate}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+    \item Перейти на цільову платформу.
+    \item Встановити python --- для перевірки було використано версію 3.10,
+      але скоріш за все підійдуть й інші.
+    \item Встановити необхідні залежності:
+      \begin{mycode}[caption={Встановлення залежностей}, label={code:install_deps}]
+        > pip install spacy
+        > python -m spacy download en_core_web_lg
+        > pip install pyinstaller
+      \end{mycode}
+    \item Зібрати виконуваний файл за допомогою PyInstaller:
+    \begin{mycode}[caption={Збірка виконуваного файлу}, label={code:install_deps}]
+      > pyinstaller ^
+          src\main.py ^
+          -F ^
+          --dist build ^
+          --collect-all en_core_web_lg
+    \end{mycode}
+    Цей приклад використовувася на ОС Windows,
+    але він буде працювати і на інших платформах. Єдина суттева зміна ---
+    символ продовження строки (\string^), для віндовс це '\string^',
+    для unix - '\string\'.
+  \end{enumerate}
+
+  В цілому, цей підхід вирішує проблему додаткових залежностей ---
+  на виході маємо лише один виконуваний файл. Але можливі деякі покращення:
+  \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+    \item Зараз мовна модель запаковуєтся в виконуваний файл.
+      Для більшої універсальності можна зробити так,
+      щоб модель знаходилась в окремій папці поряд із виконуваним файлом ---
+      таким чином користувач за бажанням міг би замінити модель на іншу.
+    \item Можна створити docker-контейнери з необхідними платформами
+    \cite{docker_windows,docker_windows_base}
+      та використовувати їх для збірки виконуваних файлів на
+      різні цільові платформи з під однієї платформи розробки.
+  \end{itemize}
+
   \subsection{Висновки}
-  \BgThispage
 
   \unnumberedSection{ЗАГАЛЬНІ ВИСНОВКИ ТА РЕКОМЕНДАЦІЇ}
   \BgThispage
