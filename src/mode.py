@@ -2,6 +2,7 @@
 from abc import ABC
 from dataclasses import dataclass
 from typing import Optional
+from udc_code import UdcCode
 
 @dataclass
 class Mode(ABC):
@@ -16,9 +17,10 @@ class PredictionMode(Mode):
 @dataclass
 class UDCComparisonMode(Mode):
     """Prediction and udc comparison mode"""
-    udc: Optional[str] = None
+    udc: Optional[UdcCode] = None
 
 @dataclass
 class TrainingMode(Mode):
     """Training mode"""
     new_model_filename: Optional[str] = None
+    udc: Optional[UdcCode] = None
