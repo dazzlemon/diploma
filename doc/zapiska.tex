@@ -8,7 +8,7 @@
 \usepackage{stringstrings}
 \usepackage{fancyhdr}
 \usepackage{enumitem}
-\usepackage{tabularx}
+\usepackage{tabularx, ragged2e}
 \usepackage[hidelinks]{hyperref}
 \usepackage{textcase}
 \usepackage{url}
@@ -139,7 +139,7 @@
 Виконав: студент групи «ПЗ1911»\\
 
 \noindent
-\begin{tabularx}{\textwidth}{lXp{0.7cm}l}
+\begin{tabularx}{\textwidth}{@{}>{\RaggedRight}lXp{0.7cm}l}
                   &                                             & & /Данило САФОНОВ/ \\ \cline{2-2} \cline{4-4}
                   & \fontsize{9}{9}\selectfont(підпис студента) & & \fontsize{9}{9}\selectfont(Ім’я ПРІЗВИЩЕ) \\
   Керівник:       &                                             & & /доц. Олена КУРОП'ЯТНИК/ \\ \cline{2-2} \cline{4-4}
@@ -169,6 +169,41 @@
 \end{spacing}
 
 \thispagestyle{empty}
+
+\newpage
+
+\begin{spacing}{1}
+\begin{center}
+  Ministry of Education and Science of Ukraine \\
+  Ukrainian State University of Science and Technologies
+
+  \vspace{\baselineskip}
+
+  Faculty «Computer technologies and systems»\\
+  Department «Computer information technology»\\
+
+  \vspace{\baselineskip}
+
+  {\fontsize{18}{18}\selectfont Explanatory Note}\\
+  to Bachelor's Thesis\\
+
+  \vspace{\baselineskip}
+\end{center}
+on the topic: «Development of tools for selection and
+verification of UDC codes of scientific works»\\
+according to educational curriculum «Software engineering»\\
+in the Speciality: «121 Software engineering»\\
+\end{spacing}
+
+\noindent
+\begin{tabularx}{\textwidth}{@{}>{\RaggedRight}p{0.57\textwidth}X}
+  Done by the student of the group PZ1911: & /Danylo SAFONOV/ \\ \cline{2-2}
+  Scientific Supervisor:                   & /Olena KUROPYATNYK/ \\ \cline{2-2}
+  Normative controller:                    & /Svitlana VOLKOVA/ \\ \cline{2-2}
+\end{tabularx}
+
+\vspace*{\fill}
+\centerline{Dnipro – 2023}
 
 \newpage
 завдання
