@@ -873,6 +873,8 @@
   Якщо запис із таким класом та ключовим словом вже присутній ---
   просто збільшуємо лічильник використань такого ключового слова.
 
+  % TODO: add diagram
+
   \subsubsection{Алгоритм витягування ключових слів}
   У додатку використано функціонал бібліотеки spaCy,
   тому ця секція розглядає алгоритм \cite{wiki_algorithm} на рівні абстракції
@@ -920,6 +922,69 @@
       у порядку спадання;
     \item c --- Кількість ключових слів, які потрібно обрати.
   \end{itemize}
+
+  \subsubsection{Огляд алгоритму spaCy noun\_chunks}
+  Бібліотека spaCy має натреновані моделі \cite{spacy_models,spacy_pipelines},
+  які зазвичай складаются з:
+  \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+    \item токенізатору \cite{wiki_tokenizer,spacy_tokenizer} ---
+      цей процесс відповідає за виділення окремих слів з тексту,
+    \item розмічувального алгоритму \cite{spacy_tagger} ---
+      цей алгоритм розмічує слова за частинами мови \cite{wiki_pos_tagging},
+    \item лемаматизатору \cite{spacy_lemmatizer} ---
+      цей компонент відповідає за лемматизацію \cite{wiki_lemmatization} ---
+      процесс приведення слова до лемми \cite{wiki_lemma} ---
+      нормальної форми слова,
+    \item парсеру \cite{spacy_dependency_parser} --- ця частина алгоритму розпізнає синтаксичні
+    залежності між словами.
+    \item розпізнавачу іменованих сутностей \cite{wiki_ner, spacy_er}
+  \end{itemize}
+
+  Цю послідовність можно представити графічно (рис. \ref{fig:spacy_pipeline}).
+  Токенайзер завжди виконуєтся першим
+  тому що усі послідуючі крокі працюють з окремими словами.
+  Інші компоненти зазвичай ніяк не залежать один від одного,
+  тому порядок їх виконання не є важливим. Втім,
+  бібліотека підтримує і сторонні моделі, які можуть мати додаткові кроки,
+  і вже вони можуть мати фіксований порядок виконання відносно один одного
+  та стандартних кроків.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{spacy_pipeline.png}    
+    \caption{Послідовність розбірки тексту моделями бібліотеки spaCy}
+    \label{fig:spacy_pipeline}
+  \end{figure}
+
+  Після обробки стандартним алгоритмом над документом можна проводити додаткові
+  трансформації, однією з них є функція noun\_chunks
+  \cite{spacy_noun_chunks} ---
+  вона повертає усі іменникові групи \cite{wiki_noun_phrase} в тексті.
+
+  Функція noun\_chunks працює наступним чином \cite{wiki_noun_chunks_impl}:
+
+  \begin{enumerate}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+    \item apply pipeline to text
+    \item keep only nouns, proper nouns, pronouns
+    \item iterate over all kept words
+    \begin{enumerate}
+      \item if word is already used in a chunk, skip it
+      \item if word has one of those dependencies, add this and the word after as a noun chunk:
+      \begin{enumerate}
+        \item "oprd" (Object Predicate): This label represents the object of a verb or other predicate.
+        \item "nsubj" (Nominal Subject): This label represents the nominal subject of a clause, typically the doer of the action.
+        \item "dobj" (Direct Object): This label represents the direct object of a verb, the entity being acted upon.
+        \item "nsubjpass" (Passive Nominal Subject): This label represents the subject of a passive verb construction.
+        \item "pcomp" (Prepositional Complement): This label represents a prepositional complement, typically a noun phrase governed by a preposition.
+        \item "pobj" (Prepositional Object): This label represents the object of a preposition.
+        \item "dative" (Dative): This label represents a noun phrase that is the recipient or beneficiary of an action.
+        \item "appos" (Appositional Modifier): This label represents an appositional modifier, typically a noun phrase that provides additional information about another noun.
+        \item "attr" (Attribute): This label represents an attribute or modifier of a noun.
+        \item "ROOT": This label represents the root of the dependency tree, typically the main verb or main predicate of the sentence.
+     \end{enumerate}
+     \item if the word has a "conj" (conjunction - "and/or/but") dependency, yield it and other interdependant words.
+    \end{enumerate}
+  \end{enumerate}
 
   \subsection{Висновки}
 
