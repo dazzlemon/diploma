@@ -964,25 +964,28 @@
   Функція noun\_chunks працює наступним чином \cite{wiki_noun_chunks_impl}:
 
   \begin{enumerate}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
-    \item apply pipeline to text
-    \item keep only nouns, proper nouns, pronouns
-    \item iterate over all kept words
+    \item Залишаємо лише ті слова, які помічені як іменники,
+      займенники або власні ім'я --- цю інформацію надає розмічувач частин мови.
+    \item Обходимо залишені слова:
     \begin{enumerate}
-      \item if word is already used in a chunk, skip it
-      \item if word has one of those dependencies, add this and the word after as a noun chunk:
-      \begin{enumerate}
-        \item "oprd" (Object Predicate): This label represents the object of a verb or other predicate.
-        \item "nsubj" (Nominal Subject): This label represents the nominal subject of a clause, typically the doer of the action.
-        \item "dobj" (Direct Object): This label represents the direct object of a verb, the entity being acted upon.
-        \item "nsubjpass" (Passive Nominal Subject): This label represents the subject of a passive verb construction.
-        \item "pcomp" (Prepositional Complement): This label represents a prepositional complement, typically a noun phrase governed by a preposition.
-        \item "pobj" (Prepositional Object): This label represents the object of a preposition.
-        \item "dative" (Dative): This label represents a noun phrase that is the recipient or beneficiary of an action.
-        \item "appos" (Appositional Modifier): This label represents an appositional modifier, typically a noun phrase that provides additional information about another noun.
-        \item "attr" (Attribute): This label represents an attribute or modifier of a noun.
-        \item "ROOT": This label represents the root of the dependency tree, typically the main verb or main predicate of the sentence.
-     \end{enumerate}
-     \item if the word has a "conj" (conjunction - "and/or/but") dependency, yield it and other interdependant words.
+      \item Якщо слово вже було використано в групі -- пропускаємо.
+      \item Якщо слово помічено як залежне з однією з наступних залежностей -- додаємо це, та наступне слово як іменникову групу.
+        Ці залежності проставляє парсер:
+        \begin{enumerate}
+          \item "oprd" (Object Predicate): This label represents the object of a verb or other predicate.
+          \item "nsubj" (Nominal Subject): This label represents the nominal subject of a clause, typically the doer of the action.
+          \item "dobj" (Direct Object): This label represents the direct object of a verb, the entity being acted upon.
+          \item "nsubjpass" (Passive Nominal Subject): This label represents the subject of a passive verb construction.
+          \item "pcomp" (Prepositional Complement): This label represents a prepositional complement, typically a noun phrase governed by a preposition.
+          \item "pobj" (Prepositional Object): This label represents the object of a preposition.
+          \item "dative" (Dative): This label represents a noun phrase that is the recipient or beneficiary of an action.
+          \item "appos" (Appositional Modifier): This label represents an appositional modifier, typically a noun phrase that provides additional information about another noun.
+          \item "attr" (Attribute): This label represents an attribute or modifier of a noun.
+          \item "ROOT": This label represents the root of the dependency tree, typically the main verb or main predicate of the sentence.
+        \end{enumerate}
+     \item Якщо слово помічено залежністю «сполучення» \cite{wiki_conjunction}
+       (наприклад «та», «або»),
+       додаємо це, та інші слова які помічені як залежні в цій групі.
     \end{enumerate}
   \end{enumerate}
 
