@@ -972,18 +972,24 @@
       \item Якщо слово помічено як залежне з однією з наступних залежностей -- додаємо це, та наступне слово як іменникову групу.
         Ці залежності проставляє парсер:
         \begin{enumerate}
-          \item "oprd" (Object Predicate): This label represents the object of a verb or other predicate.
-          \item "nsubj" (Nominal Subject): This label represents the nominal subject of a clause, typically the doer of the action.
-          \item "dobj" (Direct Object): This label represents the direct object of a verb, the entity being acted upon.
-          \item "nsubjpass" (Passive Nominal Subject): This label represents the subject of a passive verb construction.
-          \item "pcomp" (Prepositional Complement): This label represents a prepositional complement, typically a noun phrase governed by a preposition.
-          \item "pobj" (Prepositional Object): This label represents the object of a preposition.
-          \item "dative" (Dative): This label represents a noun phrase that is the recipient or beneficiary of an action.
-          \item "appos" (Appositional Modifier): This label represents an appositional modifier, typically a noun phrase that provides additional information about another noun.
-          \item "attr" (Attribute): This label represents an attribute or modifier of a noun.
-          \item "ROOT": This label represents the root of the dependency tree, typically the main verb or main predicate of the sentence.
+          \item "oprd" (Object Predicate) \cite{wiki_predicate_grammar} ---
+            присудок,
+          \item "nsubj" (Nominal Subject) \cite{nsubj_dep} --- називний підмет,
+          \item "dobj" (Direct Object) \cite{wiki_dobj} --- прямий додаток,
+          \item "nsubjpass" (Passive Nominal Subject) \cite{nsubj_pass_dep} ---
+            називний підмет в орудному відмінку,
+          \item "pcomp" (Prepositional Complement)
+            \cite{wiki_prepositional_phrases} --- прийменникове доповнення,
+          \item "pobj" (Prepositional Object) --- прийменниковий додаток,
+          \item "dative" (Dative) \cite{wiki_dative} --- давальний відмінок,
+          \item "appos" (Appositional Modifier) \cite{appos_dep} --- прикладка,
+          \item "attr" (Attribute) \cite{wiki_grammatical_modifier} ---
+            означення,
+          \item "ROOT" \cite{root_dep} --- корінь речення,
+            зазвичай головний присудок або дієслово речення.
         \end{enumerate}
-     \item Якщо слово помічено залежністю «сполучення» \cite{wiki_conjunction}
+     \item Якщо слово помічено залежністю «сполучення»
+       \cite{wiki_conjunction, conj_dep}
        (наприклад «та», «або»),
        додаємо це, та інші слова які помічені як залежні в цій групі.
     \end{enumerate}
