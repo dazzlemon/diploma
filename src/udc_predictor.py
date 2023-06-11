@@ -5,6 +5,9 @@ Core logic of the application
 import spacy
 from functional import seq
 from udc_predictor_text_input import UdcPredictorTextInput
+from udc_predictor_model import UdcPredictorModel
+from udc_code import UdcCode
+from keywords import Keywords
 
 def extract_keywords(text: UdcPredictorTextInput, top_k=50):
     """
@@ -43,3 +46,22 @@ def strip_punctuation(noun_text):
 def contains_stop_words(chunk):
     """Whether chunk has any stopwords"""
     return seq(chunk).exists(lambda token: token.is_stop)
+
+
+def predict(text: UdcPredictorTextInput, model: UdcPredictorModel) -> UdcCode:
+    """
+    predict UdcCode for `text` using `model`.
+    """
+    return extract_keywords(text)
+
+
+def train(
+    text: UdcPredictorTextInput,
+    model: UdcPredictorModel,
+    udc: UdcCode,
+    keywords: Keywords,
+) -> UdcPredictorModel:
+    """
+    Build upon `model` using `text`, `udc`, and `keywords`.
+    """
+    return model#TODO:

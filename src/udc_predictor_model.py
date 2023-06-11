@@ -4,9 +4,10 @@ UdcPredictorModel and everything related to it
 from dataclasses import dataclass
 from pathlib import Path
 from typing import List, Dict
-import toml
+import tomlkit
 from functional import seq
 from udc_code import UdcClass
+
 
 @dataclass
 class UdcPredictorModelRecord:
@@ -30,6 +31,14 @@ class UdcPredictorModelRecord:
         )
 
 
+    def to_dict(self) -> Dict[str, str]:
+        return {
+            'keyword': self.keyword,
+            'udc_class': self.udc_class,    
+            'weight': self.weight,
+        }
+
+
 @dataclass
 class UdcPredictorModel:
     """
@@ -46,6 +55,10 @@ class UdcPredictorModel:
         return cls(seq(records).map(UdcPredictorModelRecord.from_dict))
 
 
+    def to_dict(self) -> List[Dict[str, str]]:
+        return seq(self.records).map(lambda record: record.to_dict()).to_list()
+
+
 def read_model(filename: str) -> UdcPredictorModel:
     """
     Given filename read that file
@@ -54,5 +67,12 @@ def read_model(filename: str) -> UdcPredictorModel:
     return UdcPredictorModel.from_dict(
         # I don't know the encoding beforehand, and it should be ok anyways
         # pylint: disable-next=unspecified-encoding
-        toml.loads(Path(filename).read_text())['record']
+        tomlkit.loads(Path(filename).read_text())['record']
     )
+
+
+def write_model(filename: str, model: UdcPredictorModel):
+    """
+    Write `model` to `filename`
+    """
+    Path(filename).write_text(tomlkit.dumps({'record': model.to_dict()}))
