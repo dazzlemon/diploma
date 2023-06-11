@@ -1,9 +1,54 @@
 [[record]]
+keyword = "iras 16293b"
+udc_class = "11"
+weight = 19
+
+[[record]]
+keyword = "iras 16293b"
+udc_class = "12"
+weight = 19
+
+[[record]]
+keyword = "iras 16293b"
+udc_class = "15"
+weight = 19
+
+[[record]]
+keyword = "space"
+udc_class = "11"
+weight = 3
+
+[[record]]
+keyword = "space"
+udc_class = "12"
+weight = 3
+
+[[record]]
+keyword = "space"
+udc_class = "15"
+weight = 3
+
+[[record]]
+keyword = "chemistry"
+udc_class = "11"
+weight = 3
+
+[[record]]
+keyword = "chemistry"
+udc_class = "12"
+weight = 3
+
+[[record]]
+keyword = "chemistry"
+udc_class = "15"
+weight = 3
+
+[[record]]
 keyword = "science"
 udc_class = "010.11"
-weight = 22.5
+weight = 22
 
 [[record]]
 keyword = "math"
 udc_class = "110.22"
-weight = 11.3
+weight = 11

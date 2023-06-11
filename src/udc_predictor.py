@@ -2,14 +2,17 @@
 Core logic of the application
 """
 
+from typing import List, Tuple
 import spacy
 from functional import seq
 from udc_predictor_text_input import UdcPredictorTextInput
-from udc_predictor_model import UdcPredictorModel
+from udc_predictor_model import UdcPredictorModel, UdcPredictorModelRecord
 from udc_code import UdcCode
 from keywords import Keywords
 
-def extract_keywords(text: UdcPredictorTextInput, top_k=50):
+def extract_keywords(
+    text: UdcPredictorTextInput, top_k=50
+) -> List[Tuple[str, int]]:
     """
     Extract keywords from text (scientific work)
     """
@@ -23,8 +26,7 @@ def extract_keywords(text: UdcPredictorTextInput, top_k=50):
         .filter(lambda chunk_text: len(chunk_text) > 1)\
         .count_by_value()\
         .sorted(lambda x: x[1], True)\
-        .take(top_k)\
-        .map(lambda pair: pair[0])
+        .take(top_k)
 
 
 def remove_chunk_punctuation(chunk):
@@ -64,4 +66,24 @@ def train(
     """
     Build upon `model` using `text`, `udc`, and `keywords`.
     """
-    return model#TODO:
+    new_model_records = seq(extract_keywords(text))\
+        .where(lambda pair: pair[0] in keywords.strings)\
+        .flat_map(lambda pair: seq(udc.classes)\
+            .map(lambda cl: UdcPredictorModelRecord(pair[0], cl, pair[1]))
+        )\
+        .to_list()
+
+    for old_record in model.records:
+        for i, new_record in enumerate(new_model_records):
+            if new_record.keyword == old_record.keyword \
+                    and new_record.udc_class == old_record.udc_class:
+                new_model_records[i] = UdcPredictorModelRecord(
+                    new_record.keyword,
+                    new_record.udc_class,
+                    new_record.weight + old_record.weight
+                )
+                break
+        else:
+            new_model_records.append(old_record)
+
+    return UdcPredictorModel(new_model_records)
