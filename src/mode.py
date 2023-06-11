@@ -1,7 +1,6 @@
 """Data classes for app modes"""
 from abc import ABC
 from dataclasses import dataclass
-from typing import Optional
 from udc_code import UdcCode
 from keywords import Keywords
 
@@ -18,11 +17,11 @@ class PredictionMode(Mode):
 @dataclass
 class UDCComparisonMode(Mode):
     """Prediction and udc comparison mode"""
-    udc: Optional[UdcCode] = None
+    udc: UdcCode
 
 @dataclass
 class TrainingMode(Mode):
     """Training mode"""
-    new_model_filename: Optional[str] = None
-    udc: Optional[UdcCode] = None
-    keywords: Keywords = None
+    new_model_filename: str
+    udc: UdcCode
+    keywords: Keywords
