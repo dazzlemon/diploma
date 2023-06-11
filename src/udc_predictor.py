@@ -54,7 +54,17 @@ def predict(text: UdcPredictorTextInput, model: UdcPredictorModel) -> UdcCode:
     """
     predict UdcCode for `text` using `model`.
     """
-    return extract_keywords(text)
+    classes = []
+    keywords = extract_keywords(text)
+    for keyword, _ in keywords:
+        for record in model.records:
+            if record.keyword == keyword:
+                classes.append((record.udc_class, record.weight))
+
+    return seq(classes)\
+        .reduce_by_key(lambda a, b: a + b)\
+        .sorted(lambda x: x[1], True)\
+        .to_list()
 
 
 def train(

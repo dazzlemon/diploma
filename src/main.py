@@ -18,7 +18,11 @@ def main():
     match mode:
         case PredictionMode(_, _):
             print('predict')
-            print(predict(text, model))
+
+            for cl, count in predict(text, model):
+                print(cl)
+                print(count)
+                print('')
         case UDCComparisonMode(_, _, udc):
             print('predict+compare')
             print(f'{udc=}')
