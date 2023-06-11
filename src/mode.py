@@ -3,6 +3,7 @@ from abc import ABC
 from dataclasses import dataclass
 from typing import Optional
 from udc_code import UdcCode
+from keywords import Keywords
 
 @dataclass
 class Mode(ABC):
@@ -24,3 +25,4 @@ class TrainingMode(Mode):
     """Training mode"""
     new_model_filename: Optional[str] = None
     udc: Optional[UdcCode] = None
+    keywords: Keywords = None
