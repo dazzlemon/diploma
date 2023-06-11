@@ -1,0 +1,9 @@
+[[record]]
+keyword = "science"
+udc_class = "010.11"
+weight = 22.5
+
+[[record]]
+keyword = "math"
+udc_class = "110.22"
+weight = 11.3
