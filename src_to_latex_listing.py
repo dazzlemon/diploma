@@ -13,5 +13,5 @@ with open(SRC_LISTING_FILE, "w") as f:
         for filename in files:
             if filename.endswith(".py"):
                 filepath = os.path.join('..', root, filename)
-                f.write(f"\\centerline{{\"{filepath}\"}}\n".replace('_', '\\_'))
+                f.write(f"\\centerline{{\"{filename}\"}}\n".replace('_', '\\_'))
                 f.write(f"\\verbatiminput{{{filepath}}}\n")
