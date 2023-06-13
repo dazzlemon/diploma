@@ -48,6 +48,8 @@ def parse_args() -> Mode:
         arguments["udc"] = UdcCode.from_string(args.udc)
         mode = UDCComparisonMode
     else:
+        if args.keywords is not None:
+            parser.error('--keywords should only be specified with --training')
         mode = PredictionMode
 
     return mode(**arguments)
