@@ -26,8 +26,16 @@ def main():
         case UDCComparisonMode(_, _, udc):
             print('predict+compare')
             print(f'{udc=}')
-            print(predict(text, model))
-            # TODO: compare
+            prediction = predict(text, model)
+            just_classes = [cl for cl, _ in prediction]
+            intersection = set(udc.classes) & set(just_classes)
+            union = set(udc.classes).union(set(just_classes))
+            jaccard = len(intersection) / len(union)
+            print(jaccard)
+            for cl, count in prediction:
+                print(cl)
+                print(count)
+                print('')
         case TrainingMode(
             _,
             _,
