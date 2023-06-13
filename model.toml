@@ -1,4 +1,19 @@
 [[record]]
+keyword = "chemistry"
+udc_class = "12"
+weight = 21
+
+[[record]]
+keyword = "chemistry"
+udc_class = "11"
+weight = 21
+
+[[record]]
+keyword = "chemistry"
+udc_class = "12.01"
+weight = 12
+
+[[record]]
 keyword = "iras 16293b"
 udc_class = "11"
 weight = 38
@@ -26,16 +41,6 @@ weight = 6
 [[record]]
 keyword = "space"
 udc_class = "15"
-weight = 6
-
-[[record]]
-keyword = "chemistry"
-udc_class = "11"
-weight = 6
-
-[[record]]
-keyword = "chemistry"
-udc_class = "12"
 weight = 6
 
 [[record]]

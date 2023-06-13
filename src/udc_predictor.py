@@ -57,6 +57,9 @@ def predict(text: UdcPredictorTextInput, model: UdcPredictorModel) -> UdcCode:
     classes = []
     keywords = extract_keywords(text)
     for keyword, _ in keywords:
+        if (keyword in ['figure', 'table']):
+            break
+        print(keyword)
         for record in model.records:
             if record.keyword == keyword:
                 classes.append((record.udc_class, record.weight))
@@ -95,5 +98,10 @@ def train(
                 break
         else:
             new_model_records.append(old_record)
+
+    new_model_records = seq(new_model_records)\
+        .filter(lambda r: r.keyword not in ['figure', 'table'])\
+        .to_list()
+    print(new_model_records)
 
     return UdcPredictorModel(new_model_records)
