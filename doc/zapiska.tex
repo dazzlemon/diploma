@@ -839,20 +839,21 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   Для вирішення задачі отримання ключових слів для заданого тексту
   потрібен такий функціонал:
   \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
-    \item токенізація
-    \item видалення стоп слів \cite{wiki_stop_word}
-    \item розмічування частин мови \cite{wiki_pos_tagging}
-    \item розпізнавання іменованих сутностей \cite{wiki_ner}
+    \item токенізація,
+    \item видалення стоп слів \cite{wiki_stop_word},
+    \item розмічування частин мови \cite{wiki_pos_tagging},
+    \item розпізнавання іменованих сутностей \cite{wiki_ner}.
   \end{itemize}
-  або готовий алгоритм виділення ключових слів.
-  Знайдено такі бібліотеки зі схожим функціоналом:
+
+  Альтернативою може бути бібліотека, яка б надавала готовий алгоритм,
+  наприклад:
   \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
-    \item RAKE (Rapid Automatic Keyword Extraction) \cite{rake_nltk}
-    \item YAKE (Yet Another Keyword Extractor) \cite{pypi_yake}
-    \item spaCy \cite{spaCy}
-    \item NLTK (Natural Language Toolkit) \cite{nltk}
-    \item TextBlob \cite{TextBlob}
-    \item Gensim \cite{gensim}
+    \item RAKE (Rapid Automatic Keyword Extraction) \cite{rake_nltk},
+    \item YAKE (Yet Another Keyword Extractor) \cite{pypi_yake},
+    \item spaCy \cite{spaCy},
+    \item NLTK (Natural Language Toolkit) \cite{nltk},
+    \item TextBlob \cite{TextBlob},
+    \item Gensim \cite{gensim}.
   \end{itemize}
 
   YAKE потребує тренування на конкретному наборі даних ---
@@ -863,9 +864,9 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   Це бібліотеки загального призначення,
   але їх можна відкинути з наступних причин:
   \begin{itemize}[labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
-    \item вони програють spaCy за швидкістю
-    \item spaCy має кращі моделі
-    \item spaCy має більш просунуті функції
+    \item вони програють spaCy за швидкістю,
+    \item spaCy має кращі моделі,
+    \item spaCy має більш просунуті функції.
   \end{itemize}
 
   Хоча spaCy не має готового алгоритму витягування ключових слів,
