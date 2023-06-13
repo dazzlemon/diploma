@@ -18,24 +18,22 @@ def main():
     match mode:
         case PredictionMode(_, _):
             print('predict')
+            print('')
 
-            for cl, count in predict(text, model):
-                print(cl)
-                print(count)
-                print('')
+            print_keywords(predict(text, model))
         case UDCComparisonMode(_, _, udc):
             print('predict+compare')
             print(f'{udc=}')
+            print('')
+
             prediction = predict(text, model)
             just_classes = [cl for cl, _ in prediction]
-            intersection = set(udc.classes) & set(just_classes)
-            union = set(udc.classes).union(set(just_classes))
-            jaccard = len(intersection) / len(union)
-            print(jaccard)
-            for cl, count in prediction:
-                print(cl)
-                print(count)
-                print('')
+            print(f'similarity (0-1, more is better) = '
+                f'{jaccard(set(udc.classes), set(just_classes))}'
+            )
+            print('')
+
+            print_keywords(prediction)
         case TrainingMode(
             _,
             _,
@@ -49,6 +47,23 @@ def main():
             print(f'{keywords=}')
             new_model = train(text, model, udc, keywords)
             write_model(new_model_filename, new_model)
+
+
+def print_keywords(keywords_and_freqs):
+    """
+    Prints keywords and frequencies in pairs formatted for human understanding.
+    """
+    for the_class, count in keywords_and_freqs:
+        print(f'class = {the_class}')
+        print(f'weight = {count}')
+        print('')
+
+
+def jaccard(set_a, set_b):
+    """Jaccard index"""
+    intersection = set_a & set_b
+    union = set_a.union(set_b)
+    return len(intersection) / len(union)
 
 
 if __name__ == '__main__':
