@@ -75,4 +75,5 @@ def write_model(filename: str, model: UdcPredictorModel):
     """
     Write `model` to `filename`
     """
+    # pylint: disable-next=unspecified-encoding
     Path(filename).write_text(tomlkit.dumps({'record': model.to_dict()}))

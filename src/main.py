@@ -1,4 +1,5 @@
 """UDC classes predictor for scientific works in english"""
+import sys
 from parse_args import parse_args
 from udc_predictor_text_input import read_text
 from udc_predictor_model import read_model, write_model
@@ -9,8 +10,17 @@ def main():
     """main duh"""
     mode = parse_args()
 
-    text = read_text(mode.text_filename)
-    model = read_model(mode.model_filename)
+    try:
+        text = read_text(mode.text_filename)
+    except Exception:
+        print('Error when opening text file!')
+        sys.exit(-1)
+
+    try:
+        model = read_model(mode.model_filename)
+    except Exception:
+        print('Error when opening or parsing model file!')
+        sys.exit(-1)
 
     print(f'{mode.model_filename=}')
     print(f'{mode.text_filename=}')
