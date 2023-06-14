@@ -1,0 +1,125 @@
+\documentclass[14pt]{extarticle}
+\usepackage{fontspec}
+\usepackage[ukrainian,english]{babel}
+\usepackage[a4paper, left=20mm, top=20mm, right=10mm, bottom=20mm]{geometry}
+\usepackage{enumitem}
+
+\setmainfont{Times New Roman}
+\linespread{1.5}
+\setlength{\parindent}{16mm}
+
+\sloppy
+
+\pagestyle{empty}
+
+\begin{document}
+
+\noindent
+\textbf{НАЗВА:} Розробка засобів підбору та перевірки коректності
+УДК-шифрів наукових робіт
+
+\noindent
+Development of tools for selection and
+verification of UDC codes of scientific works
+
+\vspace{\baselineskip}
+
+\noindent
+\textbf{АВТОР:} Сафонов Данило Євгенович
+
+\noindent
+\textbf{НАУКОВИЙ КЕРІВНИК:} Куроп'ятник Олена Сергіївна
+
+\vspace{\baselineskip}
+
+\noindent
+\textbf{АНОТАЦІЯ}
+
+Предметом розробки є система підбору та перевірки коректності
+УДК-шифрів наукових робіт.
+
+Мета роботи полягає у розробці програмного забезпечення
+для підбору та перевірки коректності УДК-шифрів наукових робіт.
+Основними задачами є розробка та реалізація:
+\begin{itemize}[itemsep=1pt,labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+  \item засобів попередньої обробки та токенізації текстів;
+  \item моделі УДК, яка містить класи та ключові та слова, та засобів її наповнення шляхом тренувань;
+  \item засобів підбору та перевірки коректності УДК-шифру на основі розробленої моделі.
+\end{itemize}
+
+Методи розв’язання задачі.
+Для реалізації системи застосовано об’єктно-орієнтований (ОО)
+підхід до проектування з використанням UML та ОО-програмування мовою Python.
+Для обробки текстів використано алгоритми токенізація, видалення стоп слів,
+розмічування частин мови та іменованих сутностей,
+побудовані на основі компонентів бібліотеки spaCy.
+
+Отримані результати.
+Розроблено настільний додаток з CLI для підбору та перевірки коректності
+УДК-шифрів для англомовних текстів.
+
+Значення роботи. Додаток може бути корисним для часткової
+автоматизації класифікації великих бібліотек: результати ручної класифікації
+застосовуються для навчання моделі, для класифікації решти використовуються
+рекомендації програми. У розділі висновків наведено пропозиції щодо
+подальшого розвитку та покращення роботи додатку.
+
+Пояснювальна записка складається з семи розділів, переліку умовних познак,
+списку використаної літератури та додатків.
+Загальний обсяг: 80 с., 16 рис., 4 табл., 1 додаток, 101 джерел.
+
+\textbf{Ключові слова:} \MakeUppercase{python, spaCy, машинне навчання, обробка природної мови,
+УДК, інтерфейс командного рядка, ітераційна розробка, автоматизація.}
+
+\newpage
+
+\noindent
+\textbf{ABSTRACT}
+
+Development object is a tool for selection and
+verification of UDC codes of scientific works.
+
+The purpose of the work is to develop tool for selection and
+verification of UDC codes of scientific works. The main tasks are development
+and implementation of:
+
+\begin{itemize}[itemsep=1pt,labelindent=\dimexpr\parindent*2\relax, leftmargin=*]
+  \item tools for pre-processing and tokenization of texts;
+  \item UDC model, that would consist of classes, keywords, and means of
+	training that model;
+  \item tool for selection and verification of UDC codes of scientific works
+	based on the developed model.
+\end{itemize}
+
+Problem solving methods. The system is developed with object-oriented (OO)
+methodology, using UML and OO-programming in Python language.
+Texts are processed with tokenization, stop-word removal, part-of-speech tagging,
+and named-entity recognition algorithms, based on components of spaCy library.
+
+Obtained results. A desktop app with CLI for selection and
+verification of UDC codes of scientific works was developed.
+
+Value of the work. The application can be used for partial optimization of
+big libraries: results of manual classifications are used for model training,
+and the rest of the texts are classified with aid of the program.
+The summary has propositions for further imporvment of the app.
+
+The explanatory note consists of 7 chapters, list of symbolic markers,
+list of references, and appendices.
+Total volume: 80 pages, 16 drawings, 4 tables, 1 appendix, 101 references.
+
+\textbf{Keywords:} \MakeUppercase{python, spaCy, machine learning,
+Natural language processing,
+UDC, command line interface, iterative development, automation.}
+
+\newpage
+\noindent
+\textbf{БІБЛІОГРАФІЧНИЙ ОПИС:}
+
+Сафонов Д.Є.
+Розробка засобів підбору та перевірки коректності УДК-шифрів наукових
+робіт
+:спец. 121 – Інженерія програмного забезпечення
+/ наук. керівник О.С. Куроп'ятник ;
+Український державний університет науки та технологій. Дніпро, 2023. 80 с.
+\end{document}

@@ -1,6 +1,6 @@
 \documentclass[14pt]{extarticle}
 \usepackage{fontspec}
-\usepackage[ukrainian]{babel}
+\usepackage[ukrainian,english]{babel}
 \usepackage[a4paper, left=20mm, top=20mm, right=10mm, bottom=20mm]{geometry}
 \usepackage{indentfirst}
 \usepackage{titlesec}
@@ -24,6 +24,8 @@
 \usepackage{verbatim}
 \usepackage{multirow}
 \usepackage{enumitem}
+
+\sloppy
 
 \lstnewenvironment{mycode}[1][]{
   \lstset{
@@ -1399,8 +1401,8 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
 
   Формула виглядає наступним чином:
 
-  $$J(A, B) = { | A \cap B | \over | A \cup B | }
-  = { | A \cap B | \over  |A| + |B| - | A \cap B | }$$
+  $$J(A, B) =  \frac{| A \cap B |}{ | A \cup B | }
+  = \frac{| A \cap B | }{  |A| + |B| - | A \cap B | }$$
 
   \unnumberedSubsection{Висновки до розділу 3}
   Було розроблено користувацький інтерфейс,
