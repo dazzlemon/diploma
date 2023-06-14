@@ -46,6 +46,12 @@
                      ,labelsep    = abobasep
                      }
 
+\DeclareCaptionLabelFormat{dstuTabLabel}{Таблиця #2}
+\DeclareCaptionLabelSeparator{dstuTabSep}{ --- }
+\captionsetup[table]{ labelformat = dstuTabLabel
+                    , labelsep    = dstuTabSep
+                    }
+
 \addbibresource{zapiska.bib}
 
 % TODO: make section uppercase in embedded links
