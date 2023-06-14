@@ -1,29 +1,29 @@
 [[record]]
 keyword = "space"
 udc_class = "11"
-weight = 3
+weight = 6
 
 [[record]]
 keyword = "space"
 udc_class = "12"
-weight = 3
+weight = 6
 
 [[record]]
 keyword = "space"
 udc_class = "11.01"
-weight = 3
+weight = 6
 
 [[record]]
 keyword = "chemistry"
 udc_class = "11"
-weight = 3
+weight = 6
 
 [[record]]
 keyword = "chemistry"
 udc_class = "12"
-weight = 3
+weight = 6
 
 [[record]]
 keyword = "chemistry"
 udc_class = "11.01"
-weight = 3
+weight = 6
