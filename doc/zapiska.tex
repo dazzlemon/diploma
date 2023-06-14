@@ -1,6 +1,6 @@
 \documentclass[14pt]{extarticle}
 \usepackage{fontspec}
-\usepackage[ukrainian,english]{babel}
+\usepackage{polyglossia}
 \usepackage[a4paper, left=20mm, top=20mm, right=10mm, bottom=20mm]{geometry}
 \usepackage{indentfirst}
 \usepackage{titlesec}
@@ -24,6 +24,11 @@
 \usepackage{verbatim}
 \usepackage{multirow}
 \usepackage{enumitem}
+
+\setdefaultlanguage{ukrainian}
+\setotherlanguage{english}
+
+\newfontfamily{\cyrillicfonttt}{Times New Roman}
 
 \sloppy
 
