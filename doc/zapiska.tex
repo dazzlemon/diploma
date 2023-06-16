@@ -45,7 +45,46 @@
   \setunit{} --- Date of Access: \begin{otherlanguage}{english} \today \end{otherlanguage}
 }
 
+\DeclareBibliographyDriver{book}{%
+  \printnames{author}%
+  \setunit{\addperiod\space}%
+  \printfield{title}%
+  \setunit{\addcomma\space}%
+  \printtext{\printfield{edition}}%
+  \setunit{\space}~[Text]~/\space%
+  \printfield{titleaddon}%
+  \setunit{\space}%
+  \printnames{author}%
+  \setunit{\addperiod\space}%
+  \printfield{year}.\space---\space%
+  \printfield{pages}%
+}
+
+\DeclareBibliographyDriver{article}{%
+  \printnames{author}%
+  \setunit{\addperiod\space}%
+  \printfield{title}%
+  \setunit{\space}\space[Text] /%
+  \printnames{author}%
+  \setunit{\space} //%
+  \printfield{journaltitle}.%
+  \iffieldundef{volume}
+  {}
+  {
+    \setunit{\addspace} --- №%
+    \printfield{volume}%
+    \setunit{\addcomma\space}%
+  }%
+  % \printfield{number}%
+  % \setunit{\addperiod\space}%
+  \printfield{pages}%
+  \setunit{}
+}
+
 \DeclareFieldFormat[online]{title}{\normalfont#1}
+\DeclareFieldFormat[book]{title}{\normalfont#1}
+\DeclareFieldFormat[article]{title}{\normalfont#1}
+\DeclareFieldFormat[article]{journaltitle}{\normalfont#1}
 
 \renewcommand*{\newunitpunct}{\addcomma\space} % Adjust the punctuation between fields
 
