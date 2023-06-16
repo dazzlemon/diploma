@@ -26,6 +26,31 @@
 \usepackage{enumitem}
 \usepackage{threeparttable}
 
+% Customize the formatting of the online (web) entry type
+\DeclareBibliographyDriver{online}{%
+  \printnames{author}%
+  \newunit\newblock
+  \printfield{title}
+  \newunit\newblock
+  \setunit{\addperiod\space}\space[Virtual Resource] \space%
+  \printfield{titleaddon}%
+  \setunit{\space--\space}%
+  \printfield{year}%
+  \newunit\newblock
+  \printfield{pages}%
+  \newunit\newblock
+  \setunit{\addperiod\space}\addspace --- Access Mode : URL : %
+  \setunit{\space}%
+  \href{\thefield{url}}{\url{\thefield{url}}. --- Title from Screen. }% Make the URL clickable with \url
+  \setunit{} --- Date of Access: \begin{otherlanguage}{english} \today \end{otherlanguage}
+}
+
+\DeclareFieldFormat[online]{title}{\normalfont#1}
+
+\renewcommand*{\newunitpunct}{\addcomma\space} % Adjust the punctuation between fields
+
+\renewcommand*{\finentrypunct}{}
+
 \captionsetup{justification=raggedright,singlelinecheck=false}
 
 \setdefaultlanguage{ukrainian}
@@ -1986,6 +2011,31 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   до написання коду, бажано з автоматизованими перевірками, 
   це б суттево покращило якість вихідного коду,
   що в свою чергу б полегшило подальшу розробку та підтримку додатку.
+
+  \DeclareFieldFormat{labelnumberwidth}{#1\addperiod~}
+
+  % Adjust indentation for wrapped entries
+  \defbibenvironment{bibliography}
+    {
+      \list
+        {
+          \printtext[labelnumberwidth]{%
+            \printfield{labelprefix}%
+            \printfield{labelnumber}
+          }
+        }
+        {
+          \setlength{\labelwidth}{0pt}%
+          \setlength{\leftmargin}{0pt}%
+          \setlength{\labelsep}{0pt}%
+          \setlength{\itemsep}{\bibitemsep}%
+          \setlength{\itemindent}{0pt}%
+          \setlength{\parsep}{\bibparsep}
+        }%
+        \renewcommand*{\makelabel}[1]{\hss##1}
+    }
+    {\endlist}
+  {\item}
 
   \phantomsection
   \printbibliography[heading=bibintoc, title=СПИСОК ВИКОРИСТАНОЇ ЛІТЕРАТУРИ]
