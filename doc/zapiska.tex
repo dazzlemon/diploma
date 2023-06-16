@@ -81,10 +81,33 @@
   \setunit{}
 }
 
+\DeclareBibliographyDriver{inproceedings}{
+  \printnames{author}%
+  \setunit{\addperiod\space}%
+  \printfield{title}%
+  \setunit{\space}\space[Text] /%
+  \printnames{author}%
+  \setunit{\space} //%
+  \printfield{booktitle}.%
+  \iffieldundef{volume}
+  {}
+  {
+    \setunit{\addspace} --- №%
+    \printfield{volume}%
+    \setunit{\addcomma\space}%
+  }%
+  % \printfield{number}%
+  % \setunit{\addperiod\space}%
+  \printfield{pages}%
+  \setunit{}
+}
+
 \DeclareFieldFormat[online]{title}{\normalfont#1}
 \DeclareFieldFormat[book]{title}{\normalfont#1}
 \DeclareFieldFormat[article]{title}{\normalfont#1}
 \DeclareFieldFormat[article]{journaltitle}{\normalfont#1}
+\DeclareFieldFormat[inproceedings]{booktitle}{\normalfont#1}
+\DeclareFieldFormat[inproceedings]{title}{\normalfont#1}
 
 \renewcommand*{\newunitpunct}{\addcomma\space} % Adjust the punctuation between fields
 
