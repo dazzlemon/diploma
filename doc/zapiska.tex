@@ -24,6 +24,9 @@
 \usepackage{verbatim}
 \usepackage{multirow}
 \usepackage{enumitem}
+\usepackage{threeparttable}
+
+\captionsetup{justification=raggedright,singlelinecheck=false}
 
 \setdefaultlanguage{ukrainian}
 \setotherlanguage{english}
@@ -441,50 +444,61 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   2(075)=111 підручники з релігії англійською мовою,
   51(075)=111 Підручники з математики англійською мовою та ін.
 
-    \begin{table}[H]
-      \centering
+  \begin{table}[H]
+    \centering
+    \begin{threeparttable}[H]
+      \onehalfspacing
+
+      \caption{Загальні допоміжні засоби УДК}
+      \label{tab:udc_main}
+
       \begin{tabularx}{\dimexpr\linewidth - \parindent\relax}{|c|X|}
-    \hline
-    Синтаксис & Назва \\
-    \hline
-    =... & Загальні допоміжні засоби мови. \\
-    (0...) & Загальні допоміжні форми форми. \\
-    (1/9) & Загальні допоміжні слова місця. \\
-    (=...) & Загальні допоміжні ознаки людського походження,
-    етнічної групи та національності. \\
-    "..." & Загальні допоміжні слова часу,
-    допомагає зробити хвилинний поділ часу, наприклад: "1993-1996" \\
-    -0... & Загальні допоміжні характеристики загальних характеристик:
-    Властивості, Матеріали, Відносини/Процеси та Особи. \\
-    -02 & Загальні допоміжні властивості. \\
-    -03 & Загальні допоміжні матеріали. \\
-    -04 & Загальні допоміжні елементи відносин, процесів і операцій. \\
-    -05 & Загальні допоміжні особи та особисті характеристики. \\
-    \hline
-  \end{tabularx}
-  \caption{Загальні допоміжні засоби УДК}
-  \label{tab:udc_main}
-\end{table}
+        \hline
+        Синтаксис & Назва \\
+        \hline
+        =... & Загальні допоміжні засоби мови. \\
+        (0...) & Загальні допоміжні форми форми. \\
+        (1/9) & Загальні допоміжні слова місця. \\
+        (=...) & Загальні допоміжні ознаки людського походження,
+        етнічної групи та національності. \\
+        "..." & Загальні допоміжні слова часу,
+        допомагає зробити хвилинний поділ часу, наприклад: "1993-1996" \\
+        -0... & Загальні допоміжні характеристики загальних характеристик:
+        Властивості, Матеріали, Відносини/Процеси та Особи. \\
+        -02 & Загальні допоміжні властивості. \\
+        -03 & Загальні допоміжні матеріали. \\
+        -04 & Загальні допоміжні елементи відносин, процесів і операцій. \\
+        -05 & Загальні допоміжні особи та особисті характеристики. \\
+        \hline
+      \end{tabularx}
+    \end{threeparttable}
+  \end{table}
 
-  Доступно кілька сполучних символів для зв’язку та розширення номерів УДК (табл. \ref{tab:udc_signs}).
+  Доступно кілька сполучних символів для зв’язку та розширення номерів УДК
+  (табл. \ref{tab:udc_signs}).
 
-    \begin{table}[H]
-      \centering
-  \begin{tabular}{|l|l|}
-    \hline
-    Символ & Значення \\
-    \hline
-    + & узгодження, доповнення \\
-    / & послідовне розширення \\
-    : & відношення \\
-    $[~~]$ & підгрупування \\
-    $*$ & Впроваджує нотацію, відмінну від УДК \\
-    A/Z & Пряма алфавітна специфікація \\
-    \hline
-  \end{tabular}
-  \caption{Сполучні символи УДК}
-  \label{tab:udc_signs}
-\end{table}
+  \begin{table}[H]
+    \centering
+    \begin{threeparttable}[H]
+      \onehalfspacing
+
+      \caption{Сполучні символи УДК}
+      \label{tab:udc_signs}
+
+      \begin{tabular}{|l|l|}
+        \hline
+        Символ & Значення \\
+        \hline
+        + & узгодження, доповнення \\
+        / & послідовне розширення \\
+        : & відношення \\
+        $[~~]$ & підгрупування \\
+        $*$ & Впроваджує нотацію, відмінну від УДК \\
+        A/Z & Пряма алфавітна специфікація \\
+        \hline
+      \end{tabular}
+    \end{threeparttable}
+  \end{table}
 
   \subsection{Огляд аналогів}
   Широкодоступних аналогів, які б повністю відтворювали функціонал ---
@@ -646,7 +660,8 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
 
   \begin{figure}[H]
     \centering
-    \includegraphics{use-case.drawio.png}    
+    \includegraphics{use-case.drawio.png}
+    \captionsetup{justification=centering}  
     \caption{Діаграма прецедентів}
     \label{fig:use-case}
   \end{figure}
@@ -692,6 +707,7 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   \begin{figure}[H]
     \centering
     \includegraphics{io_uml1.drawio.png}    
+    \captionsetup{justification=centering}  
     \caption{Діаграма високорівневого розподілення обов'язків}
     \label{fig:io_uml1}
   \end{figure}
@@ -708,6 +724,7 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   \begin{figure}[H]
     \centering
     \includegraphics{io_uml2.drawio.png}    
+    \captionsetup{justification=centering}  
     \caption{Виділення модуля,
     який відповідає за розпізнавання аргументів командного рядка}
     \label{fig:io_uml2}
@@ -736,6 +753,7 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{io_uml3.drawio.png}    
+    \captionsetup{justification=centering}  
     \caption{Виділення типів,
     які відповідають за внутрішне представлення режиму роботи програми}
     \label{fig:io_uml3}
@@ -761,6 +779,7 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{io_uml4.drawio.png}    
+    \captionsetup{justification=centering}  
     \caption{Перенесення атрибутів режиму роботи до відповідних типів}
     \label{fig:io_uml4}
   \end{figure}
@@ -821,7 +840,8 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
 
   \begin{sidewaysfigure}[htbp]
     \centering
-    \includegraphics[height=0.6\textwidth]{io_uml5.drawio.png}    
+    \includegraphics[height=0.6\textwidth]{io_uml5.drawio.png}
+    \captionsetup{justification=centering}
     \caption{Інкапсуляція типів вхідних даних}
     \label{fig:io_uml5}
   \end{sidewaysfigure}
@@ -856,7 +876,8 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
 
   \begin{sidewaysfigure}[htbp]
     \centering
-    \includegraphics[height=0.45\textwidth]{io_uml6.drawio.png}    
+    \includegraphics[height=0.45\textwidth]{io_uml6.drawio.png}
+    \captionsetup{justification=centering}  
     \caption{Кінцева версія архітектури додатку}
     \label{fig:io_uml6}
   \end{sidewaysfigure}
@@ -877,6 +898,7 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{languish_python.png}    
+    \captionsetup{justification=centering}  
     \caption{Скриншот графіку популярності мов програмування
     з веб-ресурсу languish}
     \label{fig:python_languish}
@@ -1102,22 +1124,27 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   \begin{table}
     \centering
     \rotatebox{90}{
-      \begin{minipage}{\textheight}
-        \begin{tabular}{|c|c|c|c|c|}
-          \hline
-          Формат   & Підтримка мов програмування & Читабельність & Структура даних & Стандартизація \\
-          \hline
-          CSV      & 9/10                        & 5/10          & 3/10            & 3/10 \\
-          JSON     & 9/10                        & 5/10          & 6/10            & 9/10 \\
-          Protobuf & 7/10                        & 1/10          & 8/10            & 9/10 \\
-          TOML     & 6/10                        & 9/10          & 9/10            & 9/10 \\
-          XML      & 9/10                        & 5/10          & 9/10            & 10/10 \\
-          YAML     & 6/10                        & 7/10          & 10/10           & 8/10 \\
-          \hline
-        \end{tabular}
+      \begin{threeparttable}[H]
+        \onehalfspacing
+
         \caption{Порівняння форматів серіалізації}
         \label{tab:serialization_comparison}
-      \end{minipage}
+
+        \begin{minipage}{\textheight}
+          \begin{tabular}{|c|c|c|c|c|}
+            \hline
+            Формат   & Підтримка мов програмування & Читабельність & Структура даних & Стандартизація \\
+            \hline
+            CSV      & 9/10                        & 5/10          & 3/10            & 3/10 \\
+            JSON     & 9/10                        & 5/10          & 6/10            & 9/10 \\
+            Protobuf & 7/10                        & 1/10          & 8/10            & 9/10 \\
+            TOML     & 6/10                        & 9/10          & 9/10            & 9/10 \\
+            XML      & 9/10                        & 5/10          & 9/10            & 10/10 \\
+            YAML     & 6/10                        & 7/10          & 10/10           & 8/10 \\
+            \hline
+          \end{tabular}
+        \end{minipage}
+      \end{threeparttable}
     }
   \end{table}
 
@@ -1346,6 +1373,7 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{spacy_pipeline.png}    
+    \captionsetup{justification=centering}  
     \caption{Послідовність розбірки тексту моделями бібліотеки spaCy}
     \label{fig:spacy_pipeline}
   \end{figure}
@@ -1506,38 +1534,42 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   Решта тестів перевіряє вже функціонал розроблений спеціально для додатку.
 
   \begin{table}[H]
-    \centering
+    \begin{threeparttable}[H]
+      \centering
+
+      \onehalfspacing
+      \caption{Тести комбінацій параметрів (присутність та відсутність)}
+      \label{tab:test_cases1}
     
-  \begin{tabularx}{\dimexpr\linewidth - \parindent\relax}{|c|c|c|c|X|}
-    \hline
-    \# & -{}-training & -{}-udc & -{}-keywords & \multicolumn{1}{c|}{очікування} \\
-    \hline
-    1  & \multicolumn{3}{p{10cm}|}{тільки -h} & повне інформаційне повідомлення \\
-    \hline
-    2  & \multicolumn{3}{p{10cm}|}{text\_filename, model\_filename та неочікуваний параметр} & \multicolumn{1}{X|}{\multirow{7}{=}{коротке інформаційне повідомлення та повідомлення про помилку}} \\
-    \cline{1-4}
-    3  & \multicolumn{3}{p{10cm}|}{text\_filename та model\_filename відсутні} & \multicolumn{1}{X|}{} \\
-    \cline{1-4}
-    4  & - & - & + & \multicolumn{1}{X|}{} \\
-    \cline{1-4}
-    5  & - & + & + & \multicolumn{1}{X|}{} \\
-    \cline{1-4}
-    6  & + & - & - & \multicolumn{1}{X|}{} \\
-    \cline{1-4}
-    7  & + & - & + & \multicolumn{1}{X|}{} \\
-    \cline{1-4}
-    8 & + & + & - & \multicolumn{1}{X|}{} \\
-    \hline
-    9  & - & - & - & припущення класів \\
-    \hline
-    10  & - & + & - & припущення та порівняння \\
-    \hline
-    11 & + & + & + & тренування \\
-    \hline
-  \end{tabularx}
-  \caption{Тести комбінацій параметрів (присутність та відсутність)}
-  \label{tab:test_cases1}
-\end{table}
+      \begin{tabularx}{\dimexpr\linewidth - \parindent\relax}{|c|c|c|c|X|}
+        \hline
+        \# & -{}-training & -{}-udc & -{}-keywords & \multicolumn{1}{c|}{очікування} \\
+        \hline
+        1  & \multicolumn{3}{p{10cm}|}{тільки -h} & повне інформаційне повідомлення \\
+        \hline
+        2  & \multicolumn{3}{p{10cm}|}{text\_filename, model\_filename та неочікуваний параметр} & \multicolumn{1}{X|}{\multirow{7}{=}{коротке інформаційне повідомлення та повідомлення про помилку}} \\
+        \cline{1-4}
+        3  & \multicolumn{3}{p{10cm}|}{text\_filename та model\_filename відсутні} & \multicolumn{1}{X|}{} \\
+        \cline{1-4}
+        4  & - & - & + & \multicolumn{1}{X|}{} \\
+        \cline{1-4}
+        5  & - & + & + & \multicolumn{1}{X|}{} \\
+        \cline{1-4}
+        6  & + & - & - & \multicolumn{1}{X|}{} \\
+        \cline{1-4}
+        7  & + & - & + & \multicolumn{1}{X|}{} \\
+        \cline{1-4}
+        8 & + & + & - & \multicolumn{1}{X|}{} \\
+        \hline
+        9  & - & - & - & припущення класів \\
+        \hline
+        10  & - & + & - & припущення та порівняння \\
+        \hline
+        11 & + & + & + & тренування \\
+        \hline
+      \end{tabularx}
+    \end{threeparttable}
+  \end{table}
 
   Через представлення груп тестів лише одним варіантом з кожної,
   можна сказати що ці тести були розроблені із використанням классів
@@ -1553,6 +1585,7 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{correct_tests.png}    
+    \captionsetup{justification=centering}  
     \caption{Скриншот виконання тестів із корректною роботою програми (1, 9, 10, 11 у таблиці)}
     \label{fig:correct_tests}
   \end{figure}
@@ -1560,6 +1593,7 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{error_tests.png}    
+    \captionsetup{justification=centering}  
     \caption{Скриншот виконання тестів із некорректними вхідними даними (2, 3, 4, 5, 6, 7 та 8 у таблиці)}
     \label{fig:error_tests}
   \end{figure}
@@ -1575,6 +1609,7 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{file_not_found_test.png}    
+    \captionsetup{justification=centering}  
     \caption{Скриншот виконання тесту із некоректними назвами файлів}
     \label{fig:file_not_found_test}
   \end{figure}
@@ -1585,6 +1620,7 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{bad_model_test.png}    
+    \captionsetup{justification=centering}  
     \caption{Скриншот виконання тесту із некоректним форматом моделі}
     \label{fig:bad_model_test}
   \end{figure}
@@ -1612,6 +1648,7 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   \begin{figure}[H]
     \centering
     \includegraphics[height=\textheight]{keywords_test.png}    
+    \captionsetup{justification=centering}  
     \caption{Скриншот виконання тесту із виведенням ключових слів}
     \label{fig:keywords_test}
   \end{figure}
@@ -1664,6 +1701,7 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{training_test.png}    
+    \captionsetup{justification=centering}  
     \caption{Скриншот демонстрації тренування моделі}
     \label{fig:training_test}
   \end{figure}
@@ -1679,6 +1717,7 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{comparison_test.png}    
+    \captionsetup{justification=centering}  
     \caption{Скриншот режиму порівняння класів}
     \label{fig:comparison_test}
   \end{figure}
@@ -1757,36 +1796,41 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
   (\ref{tab:python_packaging}).
 
   \begin{table}
-    \centering
-    \rotatebox{90}{
-      \begin{minipage}{\textheight}
-        \begin{tabular}{|c|c|c|c|c|c|c|}
-          \hline
-          Назва & Кросплатформеність & Тип & Windows & Linux & macOS & FreeBSD/NetBSD \\
-          \hline
-          PyInstaller & ні & Пакетувальник & 7/8/10/11 & + & >10.15 & +** \\
-          Nuitka & ні & Компілятор & + & + & + & + \\
-          py2exe & ні & Пакетувальник & + & - & - & - \\
-          Cython & так* & Компілятор  & + & + & + & + \\
-          Frozen binaries & ні & Пакетувальник  & + & + & + & + \\
-          Docker & так & Kонтейнер  & + & + & + & + \\
-          Cloud-based deployment & так & веб  & + & + & + & + \\
-          \hline
-        \end{tabular}
+    \begin{threeparttable}
+      \centering
+      \rotatebox{90}{
+        \onehalfspacing
 
-        \vspace{10pt}
-
-        * - можна компілювати не у нативний код, а в код на мові С,
-        а вже цей код можна крос-компілювати.
-
-        ** - Неофіційна підтримка
-
-        Nuitka потребує окремого встановлення компілятора gcc
-    
         \caption{Порівняння способів пакетування додатків написаних на Python.}
         \label{tab:python_packaging}
-      \end{minipage}
-    }
+        
+        \begin{minipage}{\textheight}
+          \begin{tabular}{|c|c|c|c|c|c|c|}
+            \hline
+            Назва & Кросплатформеність & Тип & Windows & Linux & macOS & FreeBSD/NetBSD \\
+            \hline
+            PyInstaller & ні & Пакетувальник & 7/8/10/11 & + & >10.15 & +** \\
+            Nuitka & ні & Компілятор & + & + & + & + \\
+            py2exe & ні & Пакетувальник & + & - & - & - \\
+            Cython & так* & Компілятор  & + & + & + & + \\
+            Frozen binaries & ні & Пакетувальник  & + & + & + & + \\
+            Docker & так & Kонтейнер  & + & + & + & + \\
+            Cloud-based deployment & так & веб  & + & + & + & + \\
+            \hline
+          \end{tabular}
+
+          \vspace{10pt}
+
+          * - можна компілювати не у нативний код, а в код на мові С,
+          а вже цей код можна крос-компілювати.
+
+          ** - Неофіційна підтримка
+
+          Nuitka потребує окремого встановлення компілятора gcc
+
+        \end{minipage}
+      }
+    \end{threeparttable}
   \end{table}
 
   \newpage
