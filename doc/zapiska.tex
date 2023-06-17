@@ -125,19 +125,23 @@
 
 \sloppy
 
+\renewcommand{\lstlistingname}{Лістинг}
+
 \lstnewenvironment{mycode}[1][]{
   \lstset{
     basicstyle=\small\ttfamily,
     captionpos=b,
     #1
   }
+  \captionsetup{justification=centering}
 }{}
 
-\DeclareCaptionLabelFormat{dstuFigLabel}{Рисунок \arabic{section}.#2}
+\DeclareCaptionLabelFormat{dstuFigLabel}{Рисунок #2}
 \DeclareCaptionLabelSeparator{abobasep}{ --- }
 \captionsetup[figure]{labelformat = dstuFigLabel
                      ,labelsep    = abobasep
                      }
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
 
 \DeclareCaptionLabelFormat{dstuTabLabel}{Таблиця #2}
 \DeclareCaptionLabelSeparator{dstuTabSep}{ --- }
