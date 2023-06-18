@@ -29,6 +29,7 @@
 
 \counterwithin{figure}{section}
 \counterwithin{table}{section}
+\counterwithin{equation}{section}
 
 % Customize the formatting of the online (web) entry type
 \DeclareBibliographyDriver{online}{%
@@ -1545,8 +1546,10 @@ UML --- Unified Modeling Language, уніфікована мова моделю�
 
   Формула виглядає наступним чином:
 
-  $$J(A, B) =  \frac{| A \cap B |}{ | A \cup B | }
-  = \frac{| A \cap B | }{  |A| + |B| - | A \cap B | }$$
+  \begin{equation}
+    J(A, B) =  \frac{| A \cap B |}{ | A \cup B | }
+    = \frac{| A \cap B | }{  |A| + |B| - | A \cap B | }
+  \end{equation}
 
   \unnumberedSubsection{Висновки до розділу 3}
   Було розроблено користувацький інтерфейс,
