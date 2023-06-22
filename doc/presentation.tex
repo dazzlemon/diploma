@@ -1,6 +1,7 @@
 \documentclass{beamer}
 \usepackage{polyglossia}
 \usepackage{subfigure}
+\usepackage{amsmath}
 \usepackage{color, colortbl}
 
 \usetheme{Boadilla}
@@ -166,15 +167,45 @@
 
 \begin{frame}
 \frametitle{Алгоритм витягування ключових слів з тексту}
+
+\begin{equation}
+	\begin{alignedat}{2}
+	 keywords := ~&\{~ x \\
+								&|~ n \in N &&~~,  ~ x = lowercase(n \setminus P) \\
+								&           &&~~,  ~ x \cap S = \varnothing \\
+								&           &&\land~ | text(x) | > 1 \\
+								&           &&\land~ rank(x) <= c \\
+								&\},
+	\end{alignedat}
+	\nonumber
+\end{equation}
 \end{frame}
 
 % tut eshe vstavit 5 kopeek pro to kak model viglyadit
 \begin{frame}
 	\frametitle{Алгоритм перетворення ключових слів на класи УДК}
+	\begin{equation}
+    \begin{alignedat}{3}
+      F := &\{~ (k,~ n(k,&&~ K)) ~|~ k \in K,~ &&K = K_p \cap K_u ~\} \\
+      M':= &\{~ (k,~ f)  &&|~ (k, f)          &&~\forall ((k, f') \notin F
+           \land   (k, f) \in M) \\
+           &             &&                    &&\lor   ((k, f) \in F
+           \land   (k, f') \notin M) \\
+           &             &&,~ (k,~ f_f + f_m) &&~\forall (k, f_f) \in F \\
+           &             &&                    &&\land   (k, f_m) \in M \\
+           &\},
+    \end{alignedat}
+	\nonumber
+\end{equation}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Порівняння списків класів УДК}
+	\begin{equation}
+    J(A, B) =  \frac{| A \cap B |}{ | A \cup B | }
+    = \frac{| A \cap B | }{  |A| + |B| - | A \cap B | }
+	\nonumber
+\end{equation}
 \end{frame}
 
 \end{document}
